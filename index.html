@@ -368,6 +368,104 @@
             font-weight: bold;
         }
         
+        /* Score Popup Styles */
+        .score-popup {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            animation: popIn 0.5s ease-out;
+        }
+        
+        .score-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite alternate;
+        }
+        
+        .score-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .score-value {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #ffeb3b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .score-message {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .score-details {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .score-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .score-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .play-again-btn {
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            color: white;
+        }
+        
+        .close-score-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .score-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+        
         /* Footer */
         footer {
             background-color: rgba(0, 0, 0, 0.8);
@@ -433,6 +531,10 @@
             
             .options-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .score-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -571,7 +673,7 @@
             <div class="terms-box">
                 <p>By participating in IA Arena, you agree to the following terms and conditions:</p>
                 <ol>
-                    <li>You must be at least 18 years old to participate.</li>
+                    <li>You must be at least 13 years old to participate.</li>
                     <li>All answers must be your own work.</li>
                     <li>Prizes are subject to eligibility and verification.</li>
                     <li>We reserve the right to disqualify any participant for fraudulent activity.</li>
@@ -635,6 +737,23 @@
                 <button class="nav-btn" id="nextQuestion">Next</button>
             </div>
             <button class="nav-btn" id="submitQuiz" style="display: none; margin: 20px auto 0;">Submit Quiz</button>
+        </div>
+    </div>
+
+    <!-- Score Popup -->
+    <div class="modal" id="scoreModal">
+        <div class="score-popup">
+            <div class="score-icon">🏆</div>
+            <h2 class="score-title">Quiz Completed!</h2>
+            <div class="score-value" id="finalScore">0/20</div>
+            <div class="score-message" id="scoreMessage">Great job! Keep learning!</div>
+            <div class="score-details">
+                <p id="scoreDetails">You answered X questions correctly out of 20</p>
+            </div>
+            <div class="score-buttons">
+                <button class="score-btn play-again-btn" id="playAgainBtn">Play Again</button>
+                <button class="score-btn close-score-btn" id="closeScoreBtn">Close</button>
+            </div>
         </div>
     </div>
 
@@ -804,6 +923,7 @@
         const termsModal = document.getElementById('termsModal');
         const topicModal = document.getElementById('topicModal');
         const gameModal = document.getElementById('gameModal');
+        const scoreModal = document.getElementById('scoreModal');
         const errorModal = document.getElementById('errorModal');
         
         const signupForm = document.getElementById('signupForm');
@@ -824,6 +944,12 @@
         const questionCounter = document.getElementById('questionCounter');
         const gameTopic = document.getElementById('gameTopic');
         const errorMessage = document.getElementById('errorMessage');
+        
+        const finalScore = document.getElementById('finalScore');
+        const scoreMessage = document.getElementById('scoreMessage');
+        const scoreDetails = document.getElementById('scoreDetails');
+        const playAgainBtn = document.getElementById('playAgainBtn');
+        const closeScoreBtn = document.getElementById('closeScoreBtn');
 
         // Event Listeners
         getStartedBtn.addEventListener('click', () => openModal(signupModal));
@@ -853,6 +979,9 @@
         prevQuestionBtn.addEventListener('click', showPreviousQuestion);
         nextQuestionBtn.addEventListener('click', showNextQuestion);
         submitQuizBtn.addEventListener('click', submitQuiz);
+        
+        playAgainBtn.addEventListener('click', playAgain);
+        closeScoreBtn.addEventListener('click', () => closeModal(scoreModal));
 
         // Modal Functions
         function openModal(modal) {
@@ -978,8 +1107,39 @@
                 }
             });
             
-            alert(`Quiz completed! Your score: ${score}/${questions[currentTopic].length}`);
+            // Show score popup
+            showScore(score);
+        }
+        
+        function showScore(score) {
+            const totalQuestions = questions[currentTopic].length;
+            const percentage = (score / totalQuestions) * 100;
+            
+            // Set score values
+            finalScore.textContent = `${score}/${totalQuestions}`;
+            scoreDetails.textContent = `You answered ${score} questions correctly out of ${totalQuestions}`;
+            
+            // Set score message based on performance
+            if (percentage >= 90) {
+                scoreMessage.textContent = "Outstanding! You're a true expert!";
+            } else if (percentage >= 75) {
+                scoreMessage.textContent = "Excellent work! You know your stuff!";
+            } else if (percentage >= 60) {
+                scoreMessage.textContent = "Good job! You're on the right track!";
+            } else if (percentage >= 50) {
+                scoreMessage.textContent = "Not bad! Keep practicing to improve!";
+            } else {
+                scoreMessage.textContent = "Keep learning! You'll do better next time!";
+            }
+            
+            // Close game modal and open score modal
             closeModal(gameModal);
+            openModal(scoreModal);
+        }
+        
+        function playAgain() {
+            closeModal(scoreModal);
+            startGame();
         }
     </script>
 </body>
