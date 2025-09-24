@@ -321,7 +321,7 @@
         
         /* Game Screen */
         .game-screen {
-            display: none;
+            display: block;
             padding: 20px;
             max-width: 800px;
             width: 90%;
@@ -457,22 +457,22 @@
     <section class="main-content">
         <!-- First Container: Weekly Prizes -->
         <div class="container">
-            <h2>Weekly Prizes</h2>
+            <h2>Make Your Dream True</h2>
             <div class="prize-levels">
                 <div class="prize-level">
-                    <div class="prize-icon">🥉</div>
-                    <div class="prize-amount">₹5,000</div>
-                    <div>2nd Runner Up</div>
+                    <div class="prize-icon">🥇</div>
+                    <div class="prize-amount">₹50,000</div>
+                    <div>1st Prize</div>
                 </div>
                 <div class="prize-level">
                     <div class="prize-icon">🥈</div>
                     <div class="prize-amount">₹10,000</div>
-                    <div>Winner</div>
+                    <div>2nd Prize</div>
                 </div>
                 <div class="prize-level">
-                    <div class="prize-icon">🥇</div>
-                    <div class="prize-amount">₹50,000</div>
-                    <div>Grand Prize</div>
+                    <div class="prize-icon">🥉</div>
+                    <div class="prize-amount">₹5,000</div>
+                    <div>3rd Prize</div>
                 </div>
             </div>
             <button class="play-now-btn" id="playNowBtn1">Play Now</button>
@@ -514,7 +514,7 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2023 IA Arena. All rights reserved.
+            &copy; 2025 IA Arena. All rights reserved.
         </div>
     </footer>
 
@@ -571,7 +571,7 @@
             <div class="terms-box">
                 <p>By participating in IA Arena, you agree to the following terms and conditions:</p>
                 <ol>
-                    <li>You must be at least 13 years old to participate.</li>
+                    <li>You must be at least 18 years old to participate.</li>
                     <li>All answers must be your own work.</li>
                     <li>Prizes are subject to eligibility and verification.</li>
                     <li>We reserve the right to disqualify any participant for fraudulent activity.</li>
@@ -840,10 +840,11 @@
         loginForm.addEventListener('submit', handleLogin);
         acceptTermsBtn.addEventListener('click', handleAcceptTerms);
         
+        // Fix: Added proper event listeners for topic selection
         topicCards.forEach(card => {
-            card.addEventListener('click', () => {
-                currentTopic = card.getAttribute('data-topic');
-                gameTopic.textContent = `${card.querySelector('h3').textContent} Quiz`;
+            card.addEventListener('click', function() {
+                currentTopic = this.getAttribute('data-topic');
+                gameTopic.textContent = `${this.querySelector('h3').textContent} Quiz`;
                 closeModal(topicModal);
                 startGame();
             });
@@ -983,5 +984,3 @@
     </script>
 </body>
 </html>
-
-
