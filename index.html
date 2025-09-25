@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
@@ -23,43 +23,48 @@
         
         /* Header Styles */
         header {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px 5%;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 18px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
         .logo-img {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(to right, #ff8a00, #da1b60);
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #ff8a00, #da1b60);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
         
         .logo h1 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             background: linear-gradient(to right, #ff8a00, #da1b60);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 800;
-            letter-spacing: 1px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
         
         .logo span {
@@ -72,129 +77,157 @@
         }
         
         .auth-toggle {
-            background: linear-gradient(to right, #ff8a00, #da1b60);
+            background: linear-gradient(135deg, #ff8a00, #da1b60);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: 30px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-weight: 700;
+            transition: all 0.4s;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
         }
         
         .auth-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
         
         .auth-form {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            padding: 28px;
+            border-radius: 18px;
+            width: 340px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
             position: absolute;
-            top: 50px;
+            top: 55px;
             right: 0;
             display: none;
             z-index: 10;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
         
         .auth-form.expanded {
             display: block;
-            animation: slideDown 0.3s ease-out;
+            animation: slideDown 0.5s ease-out;
         }
         
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         .auth-form h3 {
-            margin-bottom: 15px;
+            margin-bottom: 22px;
             text-align: center;
             color: #4cc9f0;
+            font-size: 1.7rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
         
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e0e0e0;
         }
         
         .form-group input {
             width: 100%;
-            padding: 10px;
+            padding: 14px 18px;
             border: none;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1.05rem;
+            transition: all 0.4s;
+            border: 2px solid transparent;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.5);
+            border-color: #4cc9f0;
+            transform: translateY(-2px);
         }
         
         .btn {
-            background: linear-gradient(to right, #ff8a00, #da1b60);
+            background: linear-gradient(135deg, #ff8a00, #da1b60);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 14px 18px;
+            border-radius: 10px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-weight: 700;
+            transition: all 0.4s;
             width: 100%;
+            font-size: 1.05rem;
+            letter-spacing: 0.8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
         
         /* Hero Section */
         .hero {
-            padding: 50px 5%;
+            padding: 70px 0;
             text-align: center;
         }
         
         .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 3.2rem;
+            margin-bottom: 35px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(to right, #fff, #4cc9f0, #ffcc00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 900;
+            line-height: 1.2;
+            padding: 0 5%;
         }
         
         .slideshow-container {
-            max-width: 800px;
+            width: 100%;
             position: relative;
-            margin: 0 auto 30px;
-            border-radius: 15px;
+            margin: 0 auto 45px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
         
         .slide {
             display: none;
-            animation: fade 1.5s ease-in-out;
+            animation: fade 1.8s ease-in-out;
         }
         
         .slide img {
             width: 100%;
-            border-radius: 15px;
-            height: 400px;
+            height: 500px;
             object-fit: cover;
         }
         
         .slide-caption {
             position: absolute;
-            bottom: 20px;
+            bottom: 30px;
             left: 0;
             width: 100%;
             text-align: center;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px;
-            font-size: 1.2rem;
-            font-weight: 600;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 18px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            backdrop-filter: blur(8px);
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
         }
         
         @keyframes fade {
@@ -202,78 +235,188 @@
             to {opacity: 1}
         }
         
+        .get-started-btn {
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            color: white;
+            border: none;
+            padding: 16px 45px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 800;
+            transition: all 0.4s;
+            font-size: 1.15rem;
+            letter-spacing: 1.2px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            margin-top: 15px;
+        }
+        
+        .get-started-btn:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
+        
         /* Main Content */
         .main-content {
-            padding: 50px 5%;
+            padding: 70px 5%;
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 45px;
             justify-content: center;
         }
         
         .container {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 22px;
+            padding: 40px;
             width: 100%;
-            max-width: 550px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            max-width: 600px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        
+        .container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
         }
         
         .container h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
             text-align: center;
             color: #4cc9f0;
+            font-weight: 900;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .container h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            border-radius: 2px;
         }
         
         .prizes {
             display: flex;
             justify-content: space-around;
-            margin: 30px 0;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         
         .prize {
             text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            width: 30%;
+            min-width: 150px;
+            transition: all 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .prize:hover {
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
         .prize-amount {
-            font-size: 2rem;
-            font-weight: 800;
-            margin: 10px 0;
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin: 12px 0;
             color: #ffcc00;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
         }
         
         .prize-rank {
-            font-size: 1.2rem;
-            color: #ccc;
+            font-size: 1.4rem;
+            color: #e0e0e0;
+            font-weight: 700;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
         }
         
         .careers {
             display: flex;
             justify-content: space-around;
-            margin: 30px 0;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         
         .career {
             text-align: center;
             width: 30%;
+            min-width: 150px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            transition: all 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .career:hover {
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
         .career img {
             width: 100%;
-            height: 150px;
+            height: 170px;
             object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .career div {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #e0e0e0;
+        }
+        
+        .play-btn {
+            background: linear-gradient(135deg, #ff8a00, #da1b60);
+            color: white;
+            border: none;
+            padding: 16px 35px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 800;
+            transition: all 0.4s;
+            font-size: 1.15rem;
+            letter-spacing: 1.2px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            display: block;
+            margin: 25px auto 0;
+            width: 85%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .play-btn:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
         }
         
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 30px 5%;
-            margin-top: 50px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 45px 5%;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .footer-content {
@@ -286,42 +429,62 @@
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
         .footer-logo-img {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(to right, #ff8a00, #da1b60);
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #ff8a00, #da1b60);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            font-size: 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
         
         .footer-logo h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             background: linear-gradient(to right, #ff8a00, #da1b60);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 800;
+            font-weight: 900;
         }
         
         .quick-links {
             display: flex;
-            gap: 20px;
+            gap: 28px;
         }
         
         .quick-links a {
             color: #ccc;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            font-weight: 600;
+            position: relative;
         }
         
         .quick-links a:hover {
             color: #4cc9f0;
+            transform: translateY(-2px);
+        }
+        
+        .quick-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4cc9f0;
+            transition: width 0.3s;
+        }
+        
+        .quick-links a:hover::after {
+            width: 100%;
         }
         
         /* Modal Styles */
@@ -332,40 +495,139 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
         
         .modal-content {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-            padding: 30px;
-            border-radius: 15px;
+            background: linear-gradient(145deg, #1a2a6c, #b21f1f);
+            padding: 45px;
+            border-radius: 22px;
             width: 90%;
-            max-width: 500px;
+            max-width: 520px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            animation: modalAppear 0.5s ease-out;
+        }
+        
+        @keyframes modalAppear {
+            from { opacity: 0; transform: scale(0.9) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
         
         .modal h3 {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #4cc9f0;
+            font-size: 2rem;
+            font-weight: 800;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
         
         .close {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
             cursor: pointer;
             color: #fff;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .close:hover {
+            color: #4cc9f0;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+        
+        /* Welcome Back Message */
+        .welcome-message {
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            color: white;
+            padding: 25px 35px;
+            border-radius: 18px;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-left: 6px solid #ffcc00;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+        }
+        
+        .welcome-message:hover::before {
+            animation: shine 1.5s;
+        }
+        
+        @keyframes shine {
+            100% { transform: translateX(100%); }
+        }
+        
+        .welcome-message h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+        
+        .welcome-message p {
+            font-size: 1.15rem;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+        
+        /* Error Message */
+        .error-message {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border-left: 6px solid #ffcc00;
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .error-message h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .error-message p {
+            font-size: 1.1rem;
+            opacity: 0.95;
         }
         
         /* Quiz Styles */
         #quiz-container {
             display: none;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             position: fixed;
             top: 0;
             left: 0;
@@ -373,127 +635,245 @@
             height: 100%;
             z-index: 1001;
             overflow-y: auto;
-            padding: 20px;
+            padding: 25px;
         }
         
         .quiz-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #444;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #444;
         }
         
         .timer {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
             color: #ffcc00;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 12px 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .question {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            min-height: 80px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            border-left: 5px solid #4cc9f0;
+        .question-box {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            min-height: 120px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            border-left: 8px solid #4cc9f0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            line-height: 1.6;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .options {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 25px;
+            margin-bottom: 30px;
         }
         
         .option {
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 15px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s;
+            font-size: 1.2rem;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .option:hover {
             background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         
         .option.correct {
-            background: rgba(0, 200, 0, 0.5);
-            border-left: 5px solid #0f0;
+            background: rgba(0, 200, 0, 0.4);
+            border-left: 6px solid #0f0;
+            color: #fff;
+            transform: scale(1.02);
         }
         
         .option.incorrect {
-            background: rgba(200, 0, 0, 0.5);
-            border-left: 5px solid #f00;
+            background: rgba(200, 0, 0, 0.4);
+            border-left: 6px solid #f00;
+            color: #fff;
+            transform: scale(1.02);
         }
         
         .quiz-controls {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 30px;
+        }
+        
+        .quiz-btn {
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.4s;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quiz-btn:hover:not(:disabled) {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .quiz-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .question-counter {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 12px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .terms-box {
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
             text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* Sound Controls */
         .sound-controls {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
             z-index: 100;
         }
         
         .sound-btn {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .sound-btn:hover {
+            transform: scale(1.15);
+            background: rgba(0, 0, 0, 0.9);
         }
         
         /* Responsive Design */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
-                gap: 15px;
+                gap: 18px;
             }
             
             .auth-form {
                 width: 100%;
                 position: static;
-                margin-top: 15px;
+                margin-top: 18px;
+            }
+            
+            .hero h2 {
+                font-size: 2.4rem;
+            }
+            
+            .slide img {
+                height: 350px;
             }
             
             .options {
                 grid-template-columns: 1fr;
             }
             
+            .prizes, .careers {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .prize, .career {
+                width: 100%;
+            }
+            
+            /* Stack prizes vertically on mobile */
+            .prizes.vertical {
+                flex-direction: column;
+            }
+            
             .footer-content {
                 flex-direction: column;
-                gap: 20px;
+                gap: 28px;
                 text-align: center;
             }
             
             .quick-links {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 20px;
+            }
+            
+            .container h3 {
+                font-size: 1.8rem;
+            }
+            
+            .prize-amount {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .slide img {
+                height: 280px;
+            }
+            
+            .get-started-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 25px;
+            }
+            
+            .question-box {
+                font-size: 1.3rem;
+                padding: 20px;
+            }
+            
+            .option {
+                padding: 20px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -530,7 +910,7 @@
                     </div>
                     <button type="submit" class="btn">Sign Up</button>
                 </form>
-                <p style="margin-top: 10px; text-align: center;">Already have an account? <a href="#" id="show-login">Login</a></p>
+                <p style="margin-top: 18px; text-align: center;">Already have an account? <a href="#" id="show-login" style="color: #4cc9f0; font-weight: 600;">Login</a></p>
             </div>
         </div>
     </header>
@@ -540,62 +920,60 @@
         <h2>Challenge Your Knowledge and Win Amazing Prizes!</h2>
         <div class="slideshow-container">
             <div class="slide fade">
-                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Quiz Challenge">
+                <img src="https://www.shutterstock.com/image-vector/mega-lucky-draw-3d-style-600w-2516854283.jpg" alt="Quiz Challenge">
                 <div class="slide-caption">Test Your Knowledge Across Multiple Subjects</div>
             </div>
             <div class="slide fade">
-                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Win Prizes">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Win Prizes">
                 <div class="slide-caption">Win Exciting Cash Prizes</div>
             </div>
             <div class="slide fade">
-                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Learning">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Learning">
                 <div class="slide-caption">Expand Your Knowledge</div>
             </div>
             <div class="slide fade">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Competition">
-                <div class="slide-caption">Compete With Others</div>
+                <img src="https://wallpapers.com/images/featured/cool-4k-ultra-hd-nao22k6od4a4djyl.jpg" alt="Learning">
+                <div class="slide-caption">Expand Your Knowledge</div>
             </div>
             <div class="slide fade">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Success">
-                <div class="slide-caption">Achieve Your Dreams</div>
+                <img src="https://getwallpapers.com/wallpaper/full/5/6/9/1200246-new-4k-ultra-hd-nature-wallpaper-3840x2160-for-hd.jpg" alt="Learning">
+                <div class="slide-caption">Expand Your Income</div>
             </div>
             <div class="slide fade">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Rewards">
-                <div class="slide-caption">Get Recognized for Your Intelligence</div>
+                <img src="https://wallpapershome.com/images/pages/pic_h/3441.jpg" alt="Learning">
+                <div class="slide-caption">Fly as a Eagle</div>
             </div>
+
         </div>
-        <button class="btn" id="get-started">Get Started</button>
+        <button class="get-started-btn" id="get-started">Get Started</button>
     </section>
 
     <!-- Main Content -->
     <section class="main-content">
         <div class="container">
-            <h3>Make Your Dreams Come True</h3>
-            <div class="prizes">
+            <h3>Make Your Dream Come True</h3>
+            <div class="prizes" id="prizes-container">
                 <div class="prize">
-                     <div>🏆</div>
+                    <div>🥇</div>
+                    <div class="prize-amount">₹5100</div>
                     <div class="prize-rank">1st Prize</div>
-                    <div class="prize-amount">₹50,000</div>
-                   
                 </div>
                 <div class="prize">
                     <div>🥈</div>
+                    <div class="prize-amount">₹1100</div>
                     <div class="prize-rank">2nd Prize</div>
-                    <div class="prize-amount">₹10,000</div>
-                    
                 </div>
                 <div class="prize">
                     <div>🥉</div>
+                    <div class="prize-amount">₹501</div>
                     <div class="prize-rank">3rd Prize</div>
-                    <div class="prize-amount">₹5,000</div>
-                    
                 </div>
             </div>
-            <button class="btn play-now" data-game="quiz">Play Now</button>
+            <button class="play-btn play-now" data-game="quiz">Play Now</button>
         </div>
         
         <div class="container">
-            <h3>Makes Your Dreams Come True</h3>
+            <h3>Make Your Dream Come True</h3>
             <div class="careers">
                 <div class="career">
                     <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Engineer">
@@ -610,7 +988,7 @@
                     <div>Teacher</div>
                 </div>
             </div>
-            <button class="btn play-now" data-game="career">Participants Now</button>
+            <button class="play-btn play-now" data-game="career">Participants Now</button>
         </div>
     </section>
 
@@ -665,6 +1043,30 @@
         </div>
     </div>
 
+    <!-- Welcome Back Message -->
+    <div class="modal" id="welcome-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="welcome-message">
+                <h3>Welcome Back!</h3>
+                <p>We're excited to have you back at IQ Arena. Ready to challenge your knowledge?</p>
+            </div>
+            <button class="btn" id="continue-playing">Continue Playing</button>
+        </div>
+    </div>
+
+    <!-- Error Message Modal -->
+    <div class="modal" id="error-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="error-message">
+                <h3>Login Failed</h3>
+                <p>Invalid User ID or Password. Please try again.</p>
+            </div>
+            <button class="btn" id="try-again">Try Again</button>
+        </div>
+    </div>
+
     <!-- Terms and Conditions Modal -->
     <div class="modal" id="terms-modal">
         <div class="modal-content">
@@ -683,7 +1085,7 @@
                     <li>Personal information will be handled in accordance with our privacy policy.</li>
                 </ol>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="text-align: left;">
                 <input type="checkbox" id="accept-terms">
                 <label for="accept-terms">I accept the terms and conditions</label>
             </div>
@@ -695,14 +1097,14 @@
     <div id="quiz-container">
         <div class="quiz-header">
             <div class="timer" id="quiz-timer">00:00:00</div>
-            <button class="btn" id="pause-quiz">Pause</button>
+            <button class="quiz-btn" id="pause-quiz">Pause</button>
         </div>
-        <div class="question" id="question-text"></div>
+        <div class="question-box" id="question-text"></div>
         <div class="options" id="options-container"></div>
         <div class="quiz-controls">
-            <button class="btn" id="prev-question">Previous</button>
-            <div id="question-counter">Question 1 of 50</div>
-            <button class="btn" id="next-question">Next</button>
+            <button class="quiz-btn" id="prev-question">Previous</button>
+            <div class="question-counter" id="question-counter">Question 1 of 50</div>
+            <button class="quiz-btn" id="next-question">Next</button>
         </div>
     </div>
 
@@ -711,11 +1113,11 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h3>Quiz Results</h3>
-            <div id="score-display" style="font-size: 3rem; margin: 20px 0; color: #ffcc00;"></div>
-            <p>You scored <span id="correct-answers">0</span> out of <span id="total-questions">50</span> questions correctly.</p>
-            <div style="margin-top: 20px;">
+            <div id="score-display" style="font-size: 3.5rem; margin: 25px 0; color: #ffcc00; font-weight: 900;"></div>
+            <p style="font-size: 1.2rem;">You scored <span id="correct-answers">0</span> out of <span id="total-questions">50</span> questions correctly.</p>
+            <div style="margin-top: 25px;">
                 <button class="btn" id="play-again">Play Again</button>
-                <button class="btn" id="exit-quiz" style="background: #666; margin-left: 10px;">Exit</button>
+                <button class="btn" id="exit-quiz" style="background: #666; margin-left: 15px;">Exit</button>
             </div>
         </div>
     </div>
@@ -751,8 +1153,24 @@
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}
             slides[slideIndex-1].style.display = "block";
-            setTimeout(showSlides, 3000);
+            setTimeout(showSlides, 3500);
         }
+
+        // Make prizes vertical on mobile
+        function adjustPrizesLayout() {
+            const prizesContainer = document.getElementById('prizes-container');
+            if (window.innerWidth <= 768) {
+                prizesContainer.classList.add('vertical');
+            } else {
+                prizesContainer.classList.remove('vertical');
+            }
+        }
+
+        // Initial adjustment
+        adjustPrizesLayout();
+        
+        // Adjust on resize
+        window.addEventListener('resize', adjustPrizesLayout);
 
         // Toggle auth form
         document.getElementById('auth-toggle').addEventListener('click', function() {
@@ -806,7 +1224,7 @@
 
         // Generate random user ID
         function generateUserID() {
-            return 'IQ' + Math.floor(100000 + Math.random() * 900000);
+            return 'IQ' + Math.floor(100 + Math.random() * 900);
         }
 
         // Sign up form submission
@@ -866,10 +1284,23 @@
             if (user) {
                 currentUser = user;
                 document.getElementById('login-modal').style.display = 'none';
-                alert(`Welcome back, ${user.name}!`);
+                // Show stylish welcome back message
+                document.getElementById('welcome-modal').style.display = 'flex';
             } else {
-                alert('Invalid User ID or Password. Please try again.');
+                // Show stylish error message
+                document.getElementById('error-modal').style.display = 'flex';
             }
+        });
+
+        // Try again after error
+        document.getElementById('try-again').addEventListener('click', function() {
+            document.getElementById('error-modal').style.display = 'none';
+            document.getElementById('login-modal').style.display = 'flex';
+        });
+
+        // Continue playing after welcome message
+        document.getElementById('continue-playing').addEventListener('click', function() {
+            document.getElementById('welcome-modal').style.display = 'none';
         });
 
         // Proceed to login after signup
@@ -919,10 +1350,10 @@
             }
         }
 
-        // Generate real quiz data
+        // Generate real quiz data (50 questions)
         function generateRealQuizData() {
             quizData = [
-                // Math Questions
+                // Math Questions (10)
                 {
                     id: 1,
                     question: "What is the value of π (pi) rounded to two decimal places?",
@@ -979,240 +1410,238 @@
                     correctAnswer: 2,
                     subject: "Math"
                 },
-                
-                // Physics Questions
                 {
                     id: 9,
+                    question: "What is the value of 5! (5 factorial)?",
+                    options: ["60", "120", "240", "720"],
+                    correctAnswer: 1,
+                    subject: "Math"
+                },
+                {
+                    id: 10,
+                    question: "If a car travels at 60 km/h, how far will it travel in 2.5 hours?",
+                    options: ["120 km", "140 km", "150 km", "160 km"],
+                    correctAnswer: 2,
+                    subject: "Math"
+                },
+                
+                // Physics Questions (10)
+                {
+                    id: 11,
                     question: "What is the SI unit of force?",
                     options: ["Joule", "Newton", "Watt", "Pascal"],
                     correctAnswer: 1,
                     subject: "Physics"
                 },
                 {
-                    id: 10,
+                    id: 12,
                     question: "Which law states that every action has an equal and opposite reaction?",
                     options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Gravitation"],
                     correctAnswer: 2,
                     subject: "Physics"
                 },
                 {
-                    id: 11,
+                    id: 13,
                     question: "What is the speed of light in vacuum?",
                     options: ["299,792,458 m/s", "300,000,000 m/s", "250,000,000 m/s", "350,000,000 m/s"],
                     correctAnswer: 0,
                     subject: "Physics"
                 },
                 {
-                    id: 12,
+                    id: 14,
                     question: "Which color of light has the longest wavelength?",
                     options: ["Violet", "Blue", "Green", "Red"],
                     correctAnswer: 3,
                     subject: "Physics"
                 },
                 {
-                    id: 13,
+                    id: 15,
                     question: "What is the unit of electric current?",
                     options: ["Volt", "Ampere", "Ohm", "Watt"],
                     correctAnswer: 1,
                     subject: "Physics"
                 },
                 {
-                    id: 14,
+                    id: 16,
                     question: "Which subatomic particle has a negative charge?",
                     options: ["Proton", "Neutron", "Electron", "Positron"],
                     correctAnswer: 2,
                     subject: "Physics"
                 },
                 {
-                    id: 15,
+                    id: 17,
                     question: "What is the acceleration due to gravity on Earth?",
                     options: ["9.8 m/s²", "10 m/s²", "8.9 m/s²", "11 m/s²"],
                     correctAnswer: 0,
                     subject: "Physics"
                 },
                 {
-                    id: 16,
+                    id: 18,
                     question: "Which type of lens is used to correct myopia (nearsightedness)?",
                     options: ["Convex lens", "Concave lens", "Bifocal lens", "Cylindrical lens"],
                     correctAnswer: 1,
                     subject: "Physics"
                 },
-                
-                // Chemistry Questions
                 {
-                    id: 17,
+                    id: 19,
+                    question: "What is the SI unit of energy?",
+                    options: ["Newton", "Joule", "Watt", "Volt"],
+                    correctAnswer: 1,
+                    subject: "Physics"
+                },
+                {
+                    id: 20,
+                    question: "Which law states that pressure and volume are inversely proportional at constant temperature?",
+                    options: ["Charles's Law", "Boyle's Law", "Gay-Lussac's Law", "Avogadro's Law"],
+                    correctAnswer: 1,
+                    subject: "Physics"
+                },
+                
+                // Chemistry Questions (10)
+                {
+                    id: 21,
                     question: "What is the chemical symbol for gold?",
                     options: ["Go", "Gd", "Au", "Ag"],
                     correctAnswer: 2,
                     subject: "Chemistry"
                 },
                 {
-                    id: 18,
+                    id: 22,
                     question: "What is the pH value of pure water?",
                     options: ["5", "6", "7", "8"],
                     correctAnswer: 2,
                     subject: "Chemistry"
                 },
                 {
-                    id: 19,
+                    id: 23,
                     question: "Which gas is most abundant in Earth's atmosphere?",
                     options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"],
                     correctAnswer: 2,
                     subject: "Chemistry"
                 },
                 {
-                    id: 20,
+                    id: 24,
                     question: "What is the atomic number of carbon?",
                     options: ["6", "12", "14", "8"],
                     correctAnswer: 0,
                     subject: "Chemistry"
                 },
                 {
-                    id: 21,
+                    id: 25,
                     question: "Which element is known as the 'king of chemicals'?",
                     options: ["Sulfuric Acid", "Hydrochloric Acid", "Nitric Acid", "Acetic Acid"],
                     correctAnswer: 0,
                     subject: "Chemistry"
                 },
                 {
-                    id: 22,
+                    id: 26,
                     question: "What is the main component of natural gas?",
                     options: ["Ethane", "Propane", "Methane", "Butane"],
                     correctAnswer: 2,
                     subject: "Chemistry"
                 },
                 {
-                    id: 23,
+                    id: 27,
                     question: "Which metal is liquid at room temperature?",
                     options: ["Sodium", "Mercury", "Gallium", "Both Mercury and Gallium"],
                     correctAnswer: 3,
                     subject: "Chemistry"
                 },
                 {
-                    id: 24,
+                    id: 28,
                     question: "What is the chemical formula for table salt?",
                     options: ["NaCl", "KCl", "CaCl₂", "MgCl₂"],
                     correctAnswer: 0,
                     subject: "Chemistry"
                 },
-                
-                // Biology Questions
                 {
-                    id: 25,
+                    id: 29,
+                    question: "What is the lightest element?",
+                    options: ["Helium", "Hydrogen", "Lithium", "Oxygen"],
+                    correctAnswer: 1,
+                    subject: "Chemistry"
+                },
+                {
+                    id: 30,
+                    question: "Which gas is responsible for the greenhouse effect?",
+                    options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+                    correctAnswer: 2,
+                    subject: "Chemistry"
+                },
+                
+                // Biology Questions (10)
+                {
+                    id: 31,
                     question: "What is the powerhouse of the cell?",
                     options: ["Nucleus", "Mitochondria", "Ribosome", "Golgi Apparatus"],
                     correctAnswer: 1,
                     subject: "Biology"
                 },
                 {
-                    id: 26,
+                    id: 32,
                     question: "Which blood type is known as the universal donor?",
                     options: ["A", "B", "AB", "O"],
                     correctAnswer: 3,
                     subject: "Biology"
                 },
                 {
-                    id: 27,
+                    id: 33,
                     question: "How many chromosomes do humans have?",
                     options: ["23", "46", "48", "24"],
                     correctAnswer: 1,
                     subject: "Biology"
                 },
                 {
-                    id: 28,
+                    id: 34,
                     question: "Which organ produces insulin?",
                     options: ["Liver", "Pancreas", "Kidney", "Stomach"],
                     correctAnswer: 1,
                     subject: "Biology"
                 },
                 {
-                    id: 29,
+                    id: 35,
                     question: "What is the largest organ in the human body?",
                     options: ["Liver", "Brain", "Skin", "Heart"],
                     correctAnswer: 2,
                     subject: "Biology"
                 },
                 {
-                    id: 30,
+                    id: 36,
                     question: "Which part of the plant conducts photosynthesis?",
                     options: ["Root", "Stem", "Leaf", "Flower"],
                     correctAnswer: 2,
                     subject: "Biology"
                 },
                 {
-                    id: 31,
+                    id: 37,
                     question: "What is the study of fossils called?",
                     options: ["Paleontology", "Archaeology", "Geology", "Anthropology"],
                     correctAnswer: 0,
                     subject: "Biology"
                 },
                 {
-                    id: 32,
+                    id: 38,
                     question: "Which vitamin is produced when the skin is exposed to sunlight?",
                     options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
                     correctAnswer: 3,
                     subject: "Biology"
                 },
-                
-                // Reasoning Questions
-                {
-                    id: 33,
-                    question: "If all roses are flowers and some flowers fade quickly, which statement must be true?",
-                    options: ["All roses fade quickly", "Some roses fade quickly", "No roses fade quickly", "Some flowers that fade quickly are roses"],
-                    correctAnswer: 3,
-                    subject: "Reasoning"
-                },
-                {
-                    id: 34,
-                    question: "Complete the sequence: 2, 4, 8, 16, ...",
-                    options: ["24", "32", "36", "64"],
-                    correctAnswer: 1,
-                    subject: "Reasoning"
-                },
-                {
-                    id: 35,
-                    question: "If TEACHER is coded as UFBDIBS, how is STUDENT coded?",
-                    options: ["TUVEFOU", "TUUEFOU", "TVUFEOU", "TUVFEOU"],
-                    correctAnswer: 3,
-                    subject: "Reasoning"
-                },
-                {
-                    id: 36,
-                    question: "A is the brother of B. B is the brother of C. C is the father of D. How is A related to D?",
-                    options: ["Uncle", "Father", "Brother", "Grandfather"],
-                    correctAnswer: 0,
-                    subject: "Reasoning"
-                },
-                {
-                    id: 37,
-                    question: "If Monday is the first day of the week, what is the fourth day?",
-                    options: ["Wednesday", "Thursday", "Friday", "Saturday"],
-                    correctAnswer: 1,
-                    subject: "Reasoning"
-                },
-                {
-                    id: 38,
-                    question: "Which number is the odd one out: 2, 4, 8, 16, 32, 64, 100",
-                    options: ["2", "8", "64", "100"],
-                    correctAnswer: 3,
-                    subject: "Reasoning"
-                },
                 {
                     id: 39,
-                    question: "If all cats are mammals and some mammals are pets, which statement is correct?",
-                    options: ["All cats are pets", "Some cats are pets", "No cats are pets", "All pets are cats"],
+                    question: "What is the basic unit of life?",
+                    options: ["Atom", "Cell", "Molecule", "Organ"],
                     correctAnswer: 1,
-                    subject: "Reasoning"
+                    subject: "Biology"
                 },
                 {
                     id: 40,
-                    question: "Complete the analogy: Book is to Reading as Fork is to _____",
-                    options: ["Eating", "Writing", "Cooking", "Cutting"],
-                    correctAnswer: 0,
-                    subject: "Reasoning"
+                    question: "Which gas do plants absorb during photosynthesis?",
+                    options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+                    correctAnswer: 2,
+                    subject: "Biology"
                 },
                 
-                // History Questions
+                // History Questions (10)
                 {
                     id: 41,
                     question: "In which year did World War II end?",
