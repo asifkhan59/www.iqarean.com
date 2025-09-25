@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IA Arena - Challenge Your Knowledge</title>
+    <title>IQ Arena - Challenge Your Knowledge and Win Amazing Prizes!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Base Styles */
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -15,197 +16,312 @@
         
         body {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: white;
+            color: #fff;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden;
         }
         
         /* Header Styles */
         header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background-color: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
         
         .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fdbb2d;
             display: flex;
             align-items: center;
+            gap: 10px;
         }
         
-        .logo-icon {
-            margin-right: 10px;
-            font-size: 2.5rem;
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
         }
         
-        .login-btn {
+        .logo h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: #4cc9f0;
+        }
+        
+        /* Form Styles */
+        .auth-container {
+            position: relative;
+        }
+        
+        .auth-toggle {
             background: linear-gradient(to right, #ff8a00, #da1b60);
             color: white;
             border: none;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
         }
         
-        .login-btn:hover {
-            transform: translateY(-3px);
+        .auth-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .auth-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 50px;
+            right: 0;
+            display: none;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+        
+        .auth-form.expanded {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .auth-form h3 {
+            margin-bottom: 15px;
+            text-align: center;
+            color: #4cc9f0;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
         
         /* Hero Section */
         .hero {
+            padding: 50px 5%;
             text-align: center;
-            padding: 80px 20px;
-            background: rgba(0, 0, 0, 0.5);
-            margin: 20px;
-            border-radius: 15px;
         }
         
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: 0 auto 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
         
-        .get-started-btn {
-            background: linear-gradient(to right, #00c6ff, #0072ff);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
+        .slide {
+            display: none;
+            animation: fade 1.5s ease-in-out;
+        }
+        
+        .slide img {
+            width: 100%;
+            border-radius: 15px;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
             font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
         }
         
-        .get-started-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        @keyframes fade {
+            from {opacity: 0.4}
+            to {opacity: 1}
         }
         
         /* Main Content */
         .main-content {
+            padding: 50px 5%;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 40px 5%;
             gap: 30px;
+            justify-content: center;
         }
         
         .container {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 30px;
-            flex: 1;
-            min-width: 300px;
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
         }
         
-        .container h2 {
+        .container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
             text-align: center;
-            margin-bottom: 25px;
-            color: #fdbb2d;
-            font-size: 2rem;
+            color: #4cc9f0;
         }
         
-        /* Prize Section */
-        .prize-levels {
+        .prizes {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 30px;
+            margin: 30px 0;
         }
         
-        .prize-level {
+        .prize {
             text-align: center;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            width: 30%;
         }
         
         .prize-amount {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: 800;
             margin: 10px 0;
-            color: #00c6ff;
+            color: #ffcc00;
         }
         
-        .prize-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .prize-rank {
+            font-size: 1.2rem;
+            color: #ccc;
         }
         
-        .play-now-btn {
-            background: linear-gradient(to right, #00b09b, #96c93d);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            transition: transform 0.3s;
-        }
-        
-        .play-now-btn:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Dream Section */
-        .dream-cards {
+        .careers {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 30px;
+            margin: 30px 0;
         }
         
-        .dream-card {
+        .career {
             text-align: center;
             width: 30%;
         }
         
-        .dream-img {
+        .career img {
             width: 100%;
             height: 150px;
-            background-size: cover;
-            background-position: center;
+            object-fit: cover;
             border-radius: 10px;
             margin-bottom: 10px;
         }
         
-        .participants-btn {
-            background: linear-gradient(to right, #ff8a00, #da1b60);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-            transition: transform 0.3s;
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px 5%;
+            margin-top: 50px;
         }
         
-        .participants-btn:hover {
-            transform: scale(1.05);
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-logo-img {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        .quick-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .quick-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .quick-links a:hover {
+            color: #4cc9f0;
         }
         
         /* Modal Styles */
@@ -216,7 +332,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -228,376 +344,273 @@
             border-radius: 15px;
             width: 90%;
             max-width: 500px;
+            text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
-        .modal h2 {
-            text-align: center;
+        .modal h3 {
             margin-bottom: 20px;
-            color: #fdbb2d;
+            color: #4cc9f0;
         }
         
-        .form-group {
-            margin-bottom: 20px;
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
         }
         
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-        }
-        
-        .form-group input {
+        /* Quiz Styles */
+        #quiz-container {
+            display: none;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            background: rgba(255, 255, 255, 0.9);
+            height: 100%;
+            z-index: 1001;
+            overflow-y: auto;
+            padding: 20px;
         }
         
-        .modal-buttons {
+        .quiz-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #444;
         }
         
-        .modal-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s;
+        .timer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffcc00;
         }
         
-        .modal-btn:hover {
-            transform: scale(1.05);
-        }
-        
-        .submit-btn {
-            background: linear-gradient(to right, #00b09b, #96c93d);
-            color: white;
-        }
-        
-        .cancel-btn {
-            background: #666;
-            color: white;
-        }
-        
-        /* Terms and Conditions */
-        .terms-box {
-            background: rgba(255, 255, 255, 0.1);
+        .question {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            min-height: 80px;
             padding: 15px;
-            border-radius: 8px;
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-        
-        /* Topic Selection */
-        .topics-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .topic-card {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s;
+            border-left: 5px solid #4cc9f0;
         }
         
-        .topic-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .topic-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        
-        /* Game Screen */
-        .game-screen {
-            display: block;
-            padding: 20px;
-            max-width: 800px;
-            width: 90%;
-        }
-        
-        .question-container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .options-container {
+        .options {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
+            margin-bottom: 20px;
         }
         
         .option {
-            background: rgba(255, 255, 255, 0.1);
             padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         
         .option:hover {
             background: rgba(255, 255, 255, 0.2);
         }
         
-        .game-nav {
+        .option.correct {
+            background: rgba(0, 200, 0, 0.5);
+            border-left: 5px solid #0f0;
+        }
+        
+        .option.incorrect {
+            background: rgba(200, 0, 0, 0.5);
+            border-left: 5px solid #f00;
+        }
+        
+        .quiz-controls {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
         
-        .nav-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            background: #0072ff;
-            color: white;
-            font-weight: bold;
-        }
-        
-        /* Score Popup Styles */
-        .score-popup {
-            background: linear-gradient(135deg, #00b09b, #96c93d);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            animation: popIn 0.5s ease-out;
-        }
-        
-        .score-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: bounce 1s infinite alternate;
-        }
-        
-        .score-title {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .score-value {
-            font-size: 4rem;
-            font-weight: bold;
-            margin: 20px 0;
-            color: #ffeb3b;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .score-message {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .score-details {
-            background: rgba(255, 255, 255, 0.2);
+        .terms-box {
+            max-height: 200px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.1);
             padding: 15px;
             border-radius: 10px;
             margin: 20px 0;
+            text-align: left;
         }
         
-        .score-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+        /* Sound Controls */
+        .sound-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
         }
         
-        .score-btn {
-            padding: 12px 25px;
+        .sound-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
             border: none;
-            border-radius: 30px;
-            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .play-again-btn {
-            background: linear-gradient(to right, #ff8a00, #da1b60);
-            color: white;
-        }
-        
-        .close-score-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-        
-        .score-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Animations */
-        @keyframes popIn {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes bounce {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        /* Footer */
-        footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 40px 5%;
-            margin-top: auto;
-        }
-        
-        .footer-content {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #fdbb2d;
-            margin-bottom: 20px;
-        }
-        
-        .quick-links {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .quick-links a {
-            color: white;
-            text-decoration: none;
-            margin-bottom: 10px;
-            transition: color 0.3s;
-        }
-        
-        .quick-links a:hover {
-            color: #fdbb2d;
-        }
-        
-        .copyright {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .prize-levels, .dream-cards {
+            header {
                 flex-direction: column;
-                align-items: center;
+                gap: 15px;
             }
             
-            .prize-level, .dream-card {
-                width: 80%;
-                margin-bottom: 20px;
+            .auth-form {
+                width: 100%;
+                position: static;
+                margin-top: 15px;
             }
             
-            .topics-grid {
+            .options {
                 grid-template-columns: 1fr;
             }
             
-            .options-container {
-                grid-template-columns: 1fr;
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
             }
             
-            .score-buttons {
-                flex-direction: column;
+            .quick-links {
+                flex-wrap: wrap;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header Section -->
     <header>
         <div class="logo">
-            <span class="logo-icon">🧠</span> IA Arena
+            <div class="logo-img">IQ</div>
+            <h1>IQ <span>Arena</span></h1>
         </div>
-        <button class="login-btn" id="loginBtn">Login</button>
+        <div class="auth-container">
+            <button class="auth-toggle" id="auth-toggle">
+                <i class="fas fa-user-plus"></i> Sign Up / Login
+            </button>
+            <div class="auth-form" id="auth-form">
+                <h3>Sign Up</h3>
+                <form id="signup-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" min="13" required>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+                <p style="margin-top: 10px; text-align: center;">Already have an account? <a href="#" id="show-login">Login</a></p>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>IA Arena</h1>
-        <p>Challenge Your Knowledge and Win Amazing Prizes!</p>
-        <button class="get-started-btn" id="getStartedBtn">Get Started</button>
+        <h2>Challenge Your Knowledge and Win Amazing Prizes!</h2>
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Quiz Challenge">
+                <div class="slide-caption">Test Your Knowledge Across Multiple Subjects</div>
+            </div>
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Win Prizes">
+                <div class="slide-caption">Win Exciting Cash Prizes</div>
+            </div>
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Learning">
+                <div class="slide-caption">Expand Your Knowledge</div>
+            </div>
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Competition">
+                <div class="slide-caption">Compete With Others</div>
+            </div>
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Success">
+                <div class="slide-caption">Achieve Your Dreams</div>
+            </div>
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Rewards">
+                <div class="slide-caption">Get Recognized for Your Intelligence</div>
+            </div>
+        </div>
+        <button class="btn" id="get-started">Get Started</button>
     </section>
 
     <!-- Main Content -->
     <section class="main-content">
-        <!-- First Container: Weekly Prizes -->
         <div class="container">
-            <h2>Make Your Dream True</h2>
-            <div class="prize-levels">
-                <div class="prize-level">
-                    <div class="prize-icon">🥇</div>
+            <h3>Make Your Dreams Come True</h3>
+            <div class="prizes">
+                <div class="prize">
+                     <div>🏆</div>
+                    <div class="prize-rank">1st Prize</div>
                     <div class="prize-amount">₹50,000</div>
-                    <div>1st Prize</div>
+                   
                 </div>
-                <div class="prize-level">
-                    <div class="prize-icon">🥈</div>
+                <div class="prize">
+                    <div>🥈</div>
+                    <div class="prize-rank">2nd Prize</div>
                     <div class="prize-amount">₹10,000</div>
-                    <div>2nd Prize</div>
+                    
                 </div>
-                <div class="prize-level">
-                    <div class="prize-icon">🥉</div>
+                <div class="prize">
+                    <div>🥉</div>
+                    <div class="prize-rank">3rd Prize</div>
                     <div class="prize-amount">₹5,000</div>
-                    <div>3rd Prize</div>
+                    
                 </div>
             </div>
-            <button class="play-now-btn" id="playNowBtn1">Play Now</button>
+            <button class="btn play-now" data-game="quiz">Play Now</button>
         </div>
-
-        <!-- Second Container: Make Your Dream True -->
+        
         <div class="container">
-            <h2>Make Your Dream True</h2>
-            <div class="dream-cards">
-                <div class="dream-card">
-                    <div class="dream-img" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+            <h3>Makes Your Dreams Come True</h3>
+            <div class="careers">
+                <div class="career">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Engineer">
                     <div>Engineer</div>
                 </div>
-                <div class="dream-card">
-                    <div class="dream-img" style="background-image: url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="career">
+                    <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Doctor">
                     <div>Doctor</div>
                 </div>
-                <div class="dream-card">
-                    <div class="dream-img" style="background-image: url('https://wallpapers.com/images/hd/interactive-learning-sessionin-classroom-jpg-mfnf8m2j1bwu1tt8.jpg');"></div>
+                <div class="career">
+                    <img src="https://wallpapers.com/images/hd/interactive-learning-sessionin-classroom-jpg-mfnf8m2j1bwu1tt8.jpg" alt="Teacher">
                     <div>Teacher</div>
                 </div>
             </div>
-            <button class="participants-btn" id="participantsBtn">Participants Now</button>
+            <button class="btn play-now" data-game="career">Participants Now</button>
         </div>
     </section>
 
@@ -605,542 +618,837 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <span class="logo-icon">🧠</span> IA Arena
+                <div class="footer-logo-img">IQ</div>
+                <h2>IQ Arena</h2>
             </div>
             <div class="quick-links">
                 <a href="#">Home</a>
-                <a href="#">About Us</a>
+                <a href="#">About</a>
                 <a href="#">How to Play</a>
-                <a href="#">Leaderboard</a>
+                <a href="#">Prizes</a>
                 <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
             </div>
-        </div>
-        <div class="copyright">
-            &copy; 2025 IA Arena. All rights reserved.
         </div>
     </footer>
 
-    <!-- Signup Modal -->
-    <div class="modal" id="signupModal">
+    <!-- Signup Success Modal -->
+    <div class="modal" id="signup-success-modal">
         <div class="modal-content">
-            <h2>Create Your Account</h2>
-            <form id="signupForm">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" required>
-                </div>
-                <div class="form-group">
-                    <label for="age">Age</label>
-                    <input type="number" id="age" min="13" required>
-                </div>
-                <div class="modal-buttons">
-                    <button type="button" class="modal-btn cancel-btn" id="cancelSignup">Cancel</button>
-                    <button type="submit" class="modal-btn submit-btn">Sign Up</button>
-                </div>
-            </form>
+            <span class="close">&times;</span>
+            <h3>Registration Successful!</h3>
+            <p>Your account has been created successfully.</p>
+            <p><strong>User ID:</strong> <span id="generated-userid"></span></p>
+            <p><strong>Password:</strong> <span id="generated-password"></span></p>
+            <p>Please save these credentials for future login.</p>
+            <button class="btn" id="proceed-login">Proceed to Login</button>
         </div>
     </div>
 
     <!-- Login Modal -->
-    <div class="modal" id="loginModal">
+    <div class="modal" id="login-modal">
         <div class="modal-content">
-            <h2>Login to Your Account</h2>
-            <form id="loginForm">
+            <span class="close">&times;</span>
+            <h3>Login to IQ Arena</h3>
+            <form id="login-form">
                 <div class="form-group">
-                    <label for="loginUsername">Username</label>
-                    <input type="text" id="loginUsername" required>
+                    <label for="login-userid">User ID</label>
+                    <input type="text" id="login-userid" required>
                 </div>
                 <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required>
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
                 </div>
-                <div class="modal-buttons">
-                    <button type="button" class="modal-btn cancel-btn" id="cancelLogin">Cancel</button>
-                    <button type="submit" class="modal-btn submit-btn">Login</button>
-                </div>
+                <button type="submit" class="btn">Login</button>
             </form>
         </div>
     </div>
 
     <!-- Terms and Conditions Modal -->
-    <div class="modal" id="termsModal">
+    <div class="modal" id="terms-modal">
         <div class="modal-content">
-            <h2>Terms and Conditions</h2>
+            <span class="close">&times;</span>
+            <h3>Terms and Conditions</h3>
             <div class="terms-box">
-                <p>By participating in IA Arena, you agree to the following terms and conditions:</p>
+                <p>By participating in IQ Arena, you agree to the following terms and conditions:</p>
                 <ol>
-                    <li>You must be at least 13 years old to participate.</li>
+                    <li>You must be at least 18 years old to participate.</li>
+                    <li>Each participant can only have one account.</li>
                     <li>All answers must be your own work.</li>
                     <li>Prizes are subject to eligibility and verification.</li>
                     <li>We reserve the right to disqualify any participant for fraudulent activity.</li>
-                    <li>Your personal information will be handled in accordance with our privacy policy.</li>
-                    <li>Decisions made by the IA Arena team are final.</li>
+                    <li>The quiz must be completed within the allotted time.</li>
+                    <li>Decisions by the IQ Arena team are final.</li>
+                    <li>Personal information will be handled in accordance with our privacy policy.</li>
                 </ol>
             </div>
-            <div class="modal-buttons">
-                <button type="button" class="modal-btn cancel-btn" id="declineTerms">Decline</button>
-                <button type="button" class="modal-btn submit-btn" id="acceptTerms">Accept</button>
+            <div class="form-group">
+                <input type="checkbox" id="accept-terms">
+                <label for="accept-terms">I accept the terms and conditions</label>
             </div>
+            <button class="btn" id="start-quiz" disabled>Start Quiz</button>
         </div>
     </div>
 
-    <!-- Topic Selection Modal -->
-    <div class="modal" id="topicModal">
+    <!-- Quiz Container -->
+    <div id="quiz-container">
+        <div class="quiz-header">
+            <div class="timer" id="quiz-timer">00:00:00</div>
+            <button class="btn" id="pause-quiz">Pause</button>
+        </div>
+        <div class="question" id="question-text"></div>
+        <div class="options" id="options-container"></div>
+        <div class="quiz-controls">
+            <button class="btn" id="prev-question">Previous</button>
+            <div id="question-counter">Question 1 of 50</div>
+            <button class="btn" id="next-question">Next</button>
+        </div>
+    </div>
+
+    <!-- Quiz Results Modal -->
+    <div class="modal" id="results-modal">
         <div class="modal-content">
-            <h2>Choose Your Topic</h2>
-            <div class="topics-grid">
-                <div class="topic-card" data-topic="math">
-                    <div class="topic-icon">➗</div>
-                    <h3>Mathematics</h3>
-                </div>
-                <div class="topic-card" data-topic="biology">
-                    <div class="topic-icon">🧬</div>
-                    <h3>Biology</h3>
-                </div>
-                <div class="topic-card" data-topic="physics">
-                    <div class="topic-icon">⚛️</div>
-                    <h3>Physics</h3>
-                </div>
-                <div class="topic-card" data-topic="chemistry">
-                    <div class="topic-icon">🧪</div>
-                    <h3>Chemistry</h3>
-                </div>
-                <div class="topic-card" data-topic="reasoning">
-                    <div class="topic-icon">🧩</div>
-                    <h3>Reasoning</h3>
-                </div>
-                <div class="topic-card" data-topic="history">
-                    <div class="topic-icon">📜</div>
-                    <h3>History</h3>
-                </div>
+            <span class="close">&times;</span>
+            <h3>Quiz Results</h3>
+            <div id="score-display" style="font-size: 3rem; margin: 20px 0; color: #ffcc00;"></div>
+            <p>You scored <span id="correct-answers">0</span> out of <span id="total-questions">50</span> questions correctly.</p>
+            <div style="margin-top: 20px;">
+                <button class="btn" id="play-again">Play Again</button>
+                <button class="btn" id="exit-quiz" style="background: #666; margin-left: 10px;">Exit</button>
             </div>
         </div>
     </div>
 
-    <!-- Game Screen -->
-    <div class="modal" id="gameModal">
-        <div class="modal-content game-screen">
-            <h2 id="gameTopic">Mathematics Quiz</h2>
-            <div class="question-container">
-                <h3 id="questionText">Question will appear here</h3>
-            </div>
-            <div class="options-container" id="optionsContainer">
-                <!-- Options will be populated by JavaScript -->
-            </div>
-            <div class="game-nav">
-                <button class="nav-btn" id="prevQuestion">Previous</button>
-                <div id="questionCounter">Question 1 of 20</div>
-                <button class="nav-btn" id="nextQuestion">Next</button>
-            </div>
-            <button class="nav-btn" id="submitQuiz" style="display: none; margin: 20px auto 0;">Submit Quiz</button>
-        </div>
+    <!-- Sound Controls -->
+    <div class="sound-controls">
+        <button class="sound-btn" id="toggle-sound">
+            <i class="fas fa-volume-up"></i>
+        </button>
     </div>
 
-    <!-- Score Popup -->
-    <div class="modal" id="scoreModal">
-        <div class="score-popup">
-            <div class="score-icon">🏆</div>
-            <h2 class="score-title">Quiz Completed!</h2>
-            <div class="score-value" id="finalScore">0/20</div>
-            <div class="score-message" id="scoreMessage">Great job! Keep learning!</div>
-            <div class="score-details">
-                <p id="scoreDetails">You answered X questions correctly out of 20</p>
-            </div>
-            <div class="score-buttons">
-                <button class="score-btn play-again-btn" id="playAgainBtn">Play Again</button>
-                <button class="score-btn close-score-btn" id="closeScoreBtn">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Error Message Modal -->
-    <div class="modal" id="errorModal">
-        <div class="modal-content">
-            <h2>Error</h2>
-            <p id="errorMessage">Username and password did not match.</p>
-            <div class="modal-buttons">
-                <button type="button" class="modal-btn submit-btn" id="closeError">OK</button>
-            </div>
-        </div>
-    </div>
+    <!-- Audio Elements -->
+    <audio id="timer-sound" loop>
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-clock-ticking-1005.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="correct-sound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="incorrect-sound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        // Sample user data (in a real app, this would be stored securely on a server)
-        let users = JSON.parse(localStorage.getItem('iaArenaUsers')) || [];
+        // Slide show functionality
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 3000);
+        }
+
+        // Toggle auth form
+        document.getElementById('auth-toggle').addEventListener('click', function() {
+            const authForm = document.getElementById('auth-form');
+            authForm.classList.toggle('expanded');
+        });
+
+        // Close auth form when clicking outside
+        document.addEventListener('click', function(e) {
+            const authContainer = document.querySelector('.auth-container');
+            const authForm = document.getElementById('auth-form');
+            
+            if (!authContainer.contains(e.target) && authForm.classList.contains('expanded')) {
+                authForm.classList.remove('expanded');
+            }
+        });
+
+        // User data storage
+        let users = JSON.parse(localStorage.getItem('iqArenaUsers')) || [];
         let currentUser = null;
-        let currentTopic = null;
+        let quizData = [];
         let currentQuestionIndex = 0;
         let userAnswers = [];
-        
-        // Question database (simplified for demo)
-        const questions = {
-            math: [
-                { question: "What is 15 + 27?", options: ["40", "42", "38", "45"], correct: 1 },
-                { question: "What is the value of π (pi) rounded to two decimal places?", options: ["3.14", "3.16", "3.12", "3.18"], correct: 0 },
-                { question: "Solve for x: 2x + 5 = 15", options: ["x = 5", "x = 7", "x = 10", "x = 6"], correct: 0 },
-                { question: "What is the area of a circle with radius 5?", options: ["25π", "10π", "50π", "5π"], correct: 0 },
-                { question: "What is 8 × 9?", options: ["72", "81", "64", "76"], correct: 0 },
-                { question: "What is the square root of 144?", options: ["12", "14", "16", "18"], correct: 0 },
-                { question: "What is 3/4 of 100?", options: ["75", "50", "25", "33.3"], correct: 0 },
-                { question: "What is the next number in the sequence: 2, 4, 8, 16, ?", options: ["24", "32", "30", "28"], correct: 1 },
-                { question: "What is 15% of 200?", options: ["15", "30", "20", "25"], correct: 1 },
-                { question: "What is the value of 5! (5 factorial)?", options: ["120", "60", "25", "100"], correct: 0 },
-                { question: "What is 7² + 3²?", options: ["58", "49", "52", "56"], correct: 0 },
-                { question: "What is the perimeter of a square with side length 6?", options: ["24", "36", "12", "18"], correct: 0 },
-                { question: "What is 3/5 as a percentage?", options: ["60%", "30%", "50%", "35%"], correct: 0 },
-                { question: "What is the mean of 4, 8, 6, 5, 7?", options: ["6", "5", "7", "8"], correct: 0 },
-                { question: "What is 0.75 as a fraction?", options: ["3/4", "1/2", "2/3", "4/5"], correct: 0 },
-                { question: "What is the volume of a cube with side length 3?", options: ["27", "9", "18", "12"], correct: 0 },
-                { question: "What is 12 × 11?", options: ["132", "121", "144", "110"], correct: 0 },
-                { question: "What is 100 ÷ 4?", options: ["25", "20", "30", "40"], correct: 0 },
-                { question: "What is the next prime number after 7?", options: ["11", "9", "13", "17"], correct: 0 },
-                { question: "What is 9 × 8 ÷ 4?", options: ["18", "16", "20", "24"], correct: 0 }
-            ],
-            biology: [
-                { question: "What is the powerhouse of the cell?", options: ["Nucleus", "Mitochondria", "Ribosome", "Golgi Apparatus"], correct: 1 },
-                { question: "Which blood type is known as the universal donor?", options: ["A", "B", "AB", "O"], correct: 3 },
-                { question: "What is the basic unit of life?", options: ["Cell", "Atom", "Molecule", "Organ"], correct: 0 },
-                { question: "Which organ produces insulin?", options: ["Liver", "Pancreas", "Kidney", "Stomach"], correct: 1 },
-                { question: "What is the largest organ in the human body?", options: ["Liver", "Skin", "Heart", "Brain"], correct: 1 },
-                { question: "Which part of the plant conducts photosynthesis?", options: ["Root", "Stem", "Leaf", "Flower"], correct: 2 },
-                { question: "What is the study of fungi called?", options: ["Botany", "Mycology", "Zoology", "Ecology"], correct: 1 },
-                { question: "How many chromosomes do humans have?", options: ["46", "23", "48", "24"], correct: 0 },
-                { question: "What is the main function of red blood cells?", options: ["Fight infection", "Carry oxygen", "Clot blood", "Digest food"], correct: 1 },
-                { question: "Which vitamin is produced when skin is exposed to sunlight?", options: ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin K"], correct: 2 },
-                { question: "What is the process by which plants make food?", options: ["Respiration", "Photosynthesis", "Digestion", "Transpiration"], correct: 1 },
-                { question: "Which is the smallest bone in the human body?", options: ["Femur", "Stapes", "Tibia", "Humerus"], correct: 1 },
-                { question: "What is the largest part of the human brain?", options: ["Cerebellum", "Cerebrum", "Brainstem", "Hypothalamus"], correct: 1 },
-                { question: "Which gas do plants absorb from the atmosphere?", options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], correct: 2 },
-                { question: "What is the scientific name for humans?", options: ["Homo sapiens", "Homo erectus", "Homo habilis", "Homo neanderthalensis"], correct: 0 },
-                { question: "Which blood vessels carry blood away from the heart?", options: ["Veins", "Arteries", "Capillaries", "Venules"], correct: 1 },
-                { question: "What is the primary function of white blood cells?", options: ["Carry oxygen", "Fight infection", "Clot blood", "Digest food"], correct: 1 },
-                { question: "Which organ filters blood in the human body?", options: ["Liver", "Heart", "Kidneys", "Lungs"], correct: 2 },
-                { question: "What is the process of cell division called?", options: ["Mitosis", "Meiosis", "Both", "None"], correct: 2 },
-                { question: "Which molecule carries genetic information?", options: ["Protein", "Lipid", "DNA", "Carbohydrate"], correct: 2 }
-            ],
-            physics: [
-                { question: "What is the SI unit of force?", options: ["Joule", "Watt", "Newton", "Pascal"], correct: 2 },
-                { question: "What is the speed of light in vacuum?", options: ["299,792,458 m/s", "300,000,000 m/s", "299,000,000 m/s", "301,000,000 m/s"], correct: 0 },
-                { question: "What is Newton's first law of motion?", options: ["F=ma", "Action-reaction", "Inertia", "Conservation of energy"], correct: 2 },
-                { question: "What is the unit of electric current?", options: ["Volt", "Ampere", "Ohm", "Watt"], correct: 1 },
-                { question: "What is the acceleration due to gravity on Earth?", options: ["9.8 m/s²", "10 m/s²", "9.5 m/s²", "8.9 m/s²"], correct: 0 },
-                { question: "What is the law of conservation of energy?", options: ["Energy cannot be created or destroyed", "Energy increases with time", "Energy decreases with time", "Energy can be created but not destroyed"], correct: 0 },
-                { question: "What is the formula for kinetic energy?", options: ["½mv²", "mgh", "Fd", "PV"], correct: 0 },
-                { question: "What is the unit of frequency?", options: ["Hertz", "Decibel", "Watt", "Newton"], correct: 0 },
-                { question: "What is the bending of light called?", options: ["Reflection", "Refraction", "Diffraction", "Dispersion"], correct: 1 },
-                { question: "What is the SI unit of power?", options: ["Joule", "Watt", "Volt", "Ampere"], correct: 1 },
-                { question: "What is the formula for density?", options: ["mass/volume", "volume/mass", "mass × volume", "force/area"], correct: 0 },
-                { question: "What is the unit of electric resistance?", options: ["Volt", "Ampere", "Ohm", "Watt"], correct: 2 },
-                { question: "What is the law of reflection?", options: ["Angle of incidence = angle of reflection", "Light travels in straight lines", "Light bends when entering a new medium", "Light can be polarized"], correct: 0 },
-                { question: "What is the formula for work?", options: ["Force × distance", "Mass × acceleration", "½mv²", "mgh"], correct: 0 },
-                { question: "What is the unit of pressure?", options: ["Newton", "Pascal", "Joule", "Watt"], correct: 1 },
-                { question: "What is the principle behind a rocket's motion?", options: ["Newton's first law", "Newton's second law", "Newton's third law", "Law of conservation of energy"], correct: 2 },
-                { question: "What is the speed of sound in air at room temperature?", options: ["343 m/s", "300 m/s", "400 m/s", "250 m/s"], correct: 0 },
-                { question: "What is the formula for momentum?", options: ["mass × velocity", "force × time", "½mv²", "mgh"], correct: 0 },
-                { question: "What is the unit of electric charge?", options: ["Volt", "Ampere", "Coulomb", "Ohm"], correct: 2 },
-                { question: "What is the law of conservation of momentum?", options: ["Momentum is constant in a closed system", "Momentum increases with time", "Momentum decreases with time", "Momentum can be created but not destroyed"], correct: 0 }
-            ],
-            chemistry: [
-                { question: "What is the chemical symbol for gold?", options: ["Go", "Gd", "Au", "Ag"], correct: 2 },
-                { question: "What is the pH value of pure water?", options: ["5", "6", "7", "8"], correct: 2 },
-                { question: "What is the atomic number of carbon?", options: ["6", "12", "14", "8"], correct: 0 },
-                { question: "What is the most abundant gas in Earth's atmosphere?", options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Argon"], correct: 2 },
-                { question: "What is the chemical formula for water?", options: ["H2O", "HO2", "H2O2", "OH2"], correct: 0 },
-                { question: "What is the process of a solid turning directly into a gas?", options: ["Sublimation", "Evaporation", "Condensation", "Deposition"], correct: 0 },
-                { question: "What is the lightest element?", options: ["Helium", "Hydrogen", "Lithium", "Oxygen"], correct: 1 },
-                { question: "What is the main component of natural gas?", options: ["Propane", "Butane", "Methane", "Ethane"], correct: 2 },
-                { question: "What is the chemical symbol for sodium?", options: ["So", "Sd", "Na", "Nm"], correct: 2 },
-                { question: "What is the pH range of acids?", options: ["0-7", "7-14", "Exactly 7", "0-14"], correct: 0 },
-                { question: "What is the formula for table salt?", options: ["NaCl", "KCl", "CaCl2", "MgCl2"], correct: 0 },
-                { question: "What is the process of losing electrons called?", options: ["Reduction", "Oxidation", "Neutralization", "Ionization"], correct: 1 },
-                { question: "What is the chemical symbol for iron?", options: ["Ir", "Fe", "In", "I"], correct: 1 },
-                { question: "What is the universal solvent?", options: ["Alcohol", "Water", "Acid", "Oil"], correct: 1 },
-                { question: "What is the atomic number of oxygen?", options: ["8", "16", "6", "10"], correct: 0 },
-                { question: "What is the chemical formula for carbon dioxide?", options: ["CO", "CO2", "C2O", "C2O2"], correct: 1 },
-                { question: "What is the process of a liquid turning into a gas?", options: ["Condensation", "Evaporation", "Sublimation", "Freezing"], correct: 1 },
-                { question: "What is the chemical symbol for potassium?", options: ["P", "Pt", "K", "Po"], correct: 2 },
-                { question: "What is the pH range of bases?", options: ["0-7", "7-14", "Exactly 7", "0-14"], correct: 1 },
-                { question: "What is the formula for sulfuric acid?", options: ["H2SO4", "HCl", "HNO3", "H3PO4"], correct: 0 }
-            ],
-            reasoning: [
-                { question: "If all roses are flowers and some flowers fade quickly, then which statement must be true?", options: ["All roses fade quickly", "Some roses fade quickly", "No roses fade quickly", "Some flowers that fade quickly are roses"], correct: 3 },
-                { question: "Complete the sequence: 2, 6, 12, 20, ?", options: ["28", "30", "32", "36"], correct: 1 },
-                { question: "If A is the brother of B, B is the sister of C, and C is the father of D, how is A related to D?", options: ["Uncle", "Father", "Brother", "Grandfather"], correct: 0 },
-                { question: "Which number comes next: 1, 1, 2, 3, 5, 8, ?", options: ["11", "12", "13", "14"], correct: 2 },
-                { question: "If all cats are animals and some animals are pets, then which statement is true?", options: ["All cats are pets", "Some cats are pets", "No cats are pets", "Some pets are cats"], correct: 3 },
-                { question: "Complete the analogy: Book is to read as food is to ?", options: ["Eat", "Cook", "Buy", "Store"], correct: 0 },
-                { question: "Which word does not belong: Apple, Banana, Carrot, Orange", options: ["Apple", "Banana", "Carrot", "Orange"], correct: 2 },
-                { question: "If Monday is the first day of the week, what is the fourth day?", options: ["Wednesday", "Thursday", "Friday", "Saturday"], correct: 1 },
-                { question: "Complete the sequence: Z, X, V, T, ?", options: ["R", "S", "Q", "P"], correct: 0 },
-                { question: "If all birds have wings and penguins are birds, then what can we conclude?", options: ["Penguins can fly", "Penguins have wings", "Penguins cannot fly", "Penguins are not birds"], correct: 1 },
-                { question: "Which number is the odd one out: 2, 4, 8, 16, 32, 64, 100", options: ["2", "16", "64", "100"], correct: 3 },
-                { question: "Complete the analogy: Doctor is to hospital as teacher is to ?", options: ["School", "Student", "Classroom", "Book"], correct: 0 },
-                { question: "If all squares are rectangles and all rectangles are quadrilaterals, then what is true?", options: ["All quadrilaterals are squares", "All squares are quadrilaterals", "Some quadrilaterals are squares", "No quadrilaterals are squares"], correct: 1 },
-                { question: "Which word is the opposite of 'ancient'?", options: ["Old", "Modern", "Historic", "Traditional"], correct: 1 },
-                { question: "Complete the sequence: 3, 9, 27, 81, ?", options: ["243", "162", "108", "324"], correct: 0 },
-                { question: "If all politicians are public speakers and some public speakers are lawyers, then which statement is true?", options: ["All politicians are lawyers", "Some politicians are lawyers", "No politicians are lawyers", "Some lawyers are politicians"], correct: 3 },
-                { question: "Which number comes next: 64, 32, 16, 8, ?", options: ["2", "4", "6", "10"], correct: 1 },
-                { question: "Complete the analogy: Pen is to write as knife is to ?", options: ["Cut", "Sharp", "Metal", "Kitchen"], correct: 0 },
-                { question: "If all mammals have hair and dolphins are mammals, then what can we conclude?", options: ["Dolphins have hair", "Dolphins do not have hair", "Some dolphins have hair", "Dolphins are not mammals"], correct: 0 },
-                { question: "Which word does not belong: Circle, Square, Triangle, Rectangle", options: ["Circle", "Square", "Triangle", "Rectangle"], correct: 0 }
-            ],
-            history: [
-                { question: "In which year did World War II end?", options: ["1944", "1945", "1946", "1947"], correct: 1 },
-                { question: "Who was the first President of the United States?", options: ["Thomas Jefferson", "John Adams", "George Washington", "James Madison"], correct: 2 },
-                { question: "Which civilization built the pyramids?", options: ["Romans", "Greeks", "Egyptians", "Mayans"], correct: 2 },
-                { question: "In which year did the Titanic sink?", options: ["1910", "1912", "1914", "1916"], correct: 1 },
-                { question: "Who wrote the Declaration of Independence?", options: ["George Washington", "Thomas Jefferson", "Benjamin Franklin", "John Adams"], correct: 1 },
-                { question: "Which war was fought between the North and South in the United States?", options: ["Revolutionary War", "Civil War", "World War I", "World War II"], correct: 1 },
-                { question: "Who discovered America?", options: ["Christopher Columbus", "Vasco da Gama", "Ferdinand Magellan", "Marco Polo"], correct: 0 },
-                { question: "Which empire was ruled by Julius Caesar?", options: ["Greek", "Roman", "Egyptian", "Persian"], correct: 1 },
-                { question: "In which year did the French Revolution begin?", options: ["1776", "1789", "1799", "1812"], correct: 1 },
-                { question: "Who was the first woman to win a Nobel Prize?", options: ["Marie Curie", "Rosalind Franklin", "Jane Addams", "Mother Teresa"], correct: 0 },
-                { question: "Which country was Nelson Mandela the president of?", options: ["South Africa", "Nigeria", "Egypt", "Kenya"], correct: 0 },
-                { question: "Who painted the Mona Lisa?", options: ["Michelangelo", "Leonardo da Vinci", "Raphael", "Donatello"], correct: 1 },
-                { question: "Which event marked the beginning of World War I?", options: ["Assassination of Archduke Franz Ferdinand", "Bombing of Pearl Harbor", "Invasion of Poland", "Signing of the Treaty of Versailles"], correct: 0 },
-                { question: "Who was the first man to walk on the moon?", options: ["Neil Armstrong", "Buzz Aldrin", "Yuri Gagarin", "John Glenn"], correct: 0 },
-                { question: "Which ancient city was destroyed by a volcanic eruption?", options: ["Athens", "Rome", "Pompeii", "Sparta"], correct: 2 },
-                { question: "Who was the leader of the Soviet Union during World War II?", options: ["Vladimir Lenin", "Joseph Stalin", "Nikita Khrushchev", "Mikhail Gorbachev"], correct: 1 },
-                { question: "Which document was signed in 1215 that limited the power of the English monarch?", options: ["Magna Carta", "Declaration of Independence", "Bill of Rights", "Constitution"], correct: 0 },
-                { question: "Who was the first female Prime Minister of the United Kingdom?", options: ["Queen Elizabeth I", "Margaret Thatcher", "Theresa May", "Angela Merkel"], correct: 1 },
-                { question: "Which civilization invented paper?", options: ["Egyptian", "Greek", "Chinese", "Roman"], correct: 2 },
-                { question: "Who was the first Emperor of Rome?", options: ["Julius Caesar", "Augustus", "Nero", "Caligula"], correct: 1 }
-            ]
-        };
+        let timerInterval;
+        let timeElapsed = 0; // Unlimited timer
+        let quizPaused = false;
+        let soundEnabled = true;
 
-        // DOM Elements
-        const getStartedBtn = document.getElementById('getStartedBtn');
-        const playNowBtn1 = document.getElementById('playNowBtn1');
-        const participantsBtn = document.getElementById('participantsBtn');
-        const loginBtn = document.getElementById('loginBtn');
-        
-        const signupModal = document.getElementById('signupModal');
-        const loginModal = document.getElementById('loginModal');
-        const termsModal = document.getElementById('termsModal');
-        const topicModal = document.getElementById('topicModal');
-        const gameModal = document.getElementById('gameModal');
-        const scoreModal = document.getElementById('scoreModal');
-        const errorModal = document.getElementById('errorModal');
-        
-        const signupForm = document.getElementById('signupForm');
-        const loginForm = document.getElementById('loginForm');
-        const acceptTermsBtn = document.getElementById('acceptTerms');
-        const declineTermsBtn = document.getElementById('declineTerms');
-        const closeErrorBtn = document.getElementById('closeError');
-        
-        const cancelSignup = document.getElementById('cancelSignup');
-        const cancelLogin = document.getElementById('cancelLogin');
-        
-        const topicCards = document.querySelectorAll('.topic-card');
-        const questionText = document.getElementById('questionText');
-        const optionsContainer = document.getElementById('optionsContainer');
-        const prevQuestionBtn = document.getElementById('prevQuestion');
-        const nextQuestionBtn = document.getElementById('nextQuestion');
-        const submitQuizBtn = document.getElementById('submitQuiz');
-        const questionCounter = document.getElementById('questionCounter');
-        const gameTopic = document.getElementById('gameTopic');
-        const errorMessage = document.getElementById('errorMessage');
-        
-        const finalScore = document.getElementById('finalScore');
-        const scoreMessage = document.getElementById('scoreMessage');
-        const scoreDetails = document.getElementById('scoreDetails');
-        const playAgainBtn = document.getElementById('playAgainBtn');
-        const closeScoreBtn = document.getElementById('closeScoreBtn');
+        // Sound elements
+        const timerSound = document.getElementById('timer-sound');
+        const correctSound = document.getElementById('correct-sound');
+        const incorrectSound = document.getElementById('incorrect-sound');
 
-        // Event Listeners
-        getStartedBtn.addEventListener('click', () => openModal(signupModal));
-        playNowBtn1.addEventListener('click', () => openModal(signupModal));
-        participantsBtn.addEventListener('click', () => openModal(signupModal));
-        loginBtn.addEventListener('click', () => openModal(loginModal));
-        
-        cancelSignup.addEventListener('click', () => closeModal(signupModal));
-        cancelLogin.addEventListener('click', () => closeModal(loginModal));
-        declineTermsBtn.addEventListener('click', () => closeModal(termsModal));
-        closeErrorBtn.addEventListener('click', () => closeModal(errorModal));
-        
-        signupForm.addEventListener('submit', handleSignup);
-        loginForm.addEventListener('submit', handleLogin);
-        acceptTermsBtn.addEventListener('click', handleAcceptTerms);
-        
-        // Fix: Added proper event listeners for topic selection
-        topicCards.forEach(card => {
-            card.addEventListener('click', function() {
-                currentTopic = this.getAttribute('data-topic');
-                gameTopic.textContent = `${this.querySelector('h3').textContent} Quiz`;
-                closeModal(topicModal);
-                startGame();
-            });
+        // Toggle sound
+        document.getElementById('toggle-sound').addEventListener('click', function() {
+            soundEnabled = !soundEnabled;
+            const icon = this.querySelector('i');
+            
+            if (soundEnabled) {
+                icon.className = 'fas fa-volume-up';
+                if (document.getElementById('quiz-container').style.display === 'block') {
+                    timerSound.play();
+                }
+            } else {
+                icon.className = 'fas fa-volume-mute';
+                timerSound.pause();
+                correctSound.pause();
+                incorrectSound.pause();
+            }
         });
-        
-        prevQuestionBtn.addEventListener('click', showPreviousQuestion);
-        nextQuestionBtn.addEventListener('click', showNextQuestion);
-        submitQuizBtn.addEventListener('click', submitQuiz);
-        
-        playAgainBtn.addEventListener('click', playAgain);
-        closeScoreBtn.addEventListener('click', () => closeModal(scoreModal));
 
-        // Modal Functions
-        function openModal(modal) {
-            modal.style.display = 'flex';
-        }
-        
-        function closeModal(modal) {
-            modal.style.display = 'none';
+        // Generate random user ID
+        function generateUserID() {
+            return 'IQ' + Math.floor(100000 + Math.random() * 900000);
         }
 
-        // Signup Handler
-        function handleSignup(e) {
+        // Sign up form submission
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const username = document.getElementById('username').value;
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const age = document.getElementById('age').value;
             
-            // Check if user already exists
-            if (users.find(user => user.username === username)) {
-                showError("Username already exists. Please choose a different username.");
+            // Check if email already exists
+            if (users.find(user => user.email === email)) {
+                alert('An account with this email already exists.');
                 return;
             }
             
-            // Create new user
-            const newUser = { username, password, age };
-            users.push(newUser);
-            localStorage.setItem('iaArenaUsers', JSON.stringify(users));
+            const userID = generateUserID();
             
-            currentUser = newUser;
-            closeModal(signupModal);
-            openModal(termsModal);
-        }
+            // Store user data
+            users.push({
+                name,
+                email,
+                password,
+                age,
+                userID
+            });
+            
+            localStorage.setItem('iqArenaUsers', JSON.stringify(users));
+            
+            // Show success modal with credentials
+            document.getElementById('generated-userid').textContent = userID;
+            document.getElementById('generated-password').textContent = password;
+            document.getElementById('signup-success-modal').style.display = 'flex';
+            
+            // Close auth form
+            document.getElementById('auth-form').classList.remove('expanded');
+        });
 
-        // Login Handler
-        function handleLogin(e) {
+        // Show login modal
+        document.getElementById('show-login').addEventListener('click', function(e) {
             e.preventDefault();
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
+            document.getElementById('login-modal').style.display = 'flex';
+            document.getElementById('auth-form').classList.remove('expanded');
+        });
+
+        // Login form submission
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Check if user exists and password matches
-            const user = users.find(user => user.username === username && user.password === password);
+            const userID = document.getElementById('login-userid').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Find user
+            const user = users.find(u => u.userID === userID && u.password === password);
             
             if (user) {
                 currentUser = user;
-                closeModal(loginModal);
-                openModal(topicModal);
+                document.getElementById('login-modal').style.display = 'none';
+                alert(`Welcome back, ${user.name}!`);
             } else {
-                showError("Username and password did not match.");
+                alert('Invalid User ID or Password. Please try again.');
+            }
+        });
+
+        // Proceed to login after signup
+        document.getElementById('proceed-login').addEventListener('click', function() {
+            document.getElementById('signup-success-modal').style.display = 'none';
+            document.getElementById('login-modal').style.display = 'flex';
+        });
+
+        // Play Now button click
+        document.querySelectorAll('.play-now').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!currentUser) {
+                    document.getElementById('login-modal').style.display = 'flex';
+                } else {
+                    document.getElementById('terms-modal').style.display = 'flex';
+                }
+            });
+        });
+
+        // Terms acceptance
+        document.getElementById('accept-terms').addEventListener('change', function() {
+            document.getElementById('start-quiz').disabled = !this.checked;
+        });
+
+        // Start quiz
+        document.getElementById('start-quiz').addEventListener('click', function() {
+            document.getElementById('terms-modal').style.display = 'none';
+            initializeQuiz();
+        });
+
+        // Initialize quiz
+        function initializeQuiz() {
+            // Generate quiz questions with real content
+            generateRealQuizData();
+            
+            currentQuestionIndex = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            timeElapsed = 0;
+            
+            document.getElementById('quiz-container').style.display = 'block';
+            displayQuestion();
+            startTimer();
+            
+            // Play timer sound if enabled
+            if (soundEnabled) {
+                timerSound.play();
             }
         }
 
-        // Terms Acceptance Handler
-        function handleAcceptTerms() {
-            closeModal(termsModal);
-            openModal(topicModal);
+        // Generate real quiz data
+        function generateRealQuizData() {
+            quizData = [
+                // Math Questions
+                {
+                    id: 1,
+                    question: "What is the value of π (pi) rounded to two decimal places?",
+                    options: ["3.14", "3.16", "3.12", "3.18"],
+                    correctAnswer: 0,
+                    subject: "Math"
+                },
+                {
+                    id: 2,
+                    question: "What is the square root of 144?",
+                    options: ["11", "12", "13", "14"],
+                    correctAnswer: 1,
+                    subject: "Math"
+                },
+                {
+                    id: 3,
+                    question: "If a triangle has angles of 45°, 45°, and 90°, what type of triangle is it?",
+                    options: ["Equilateral", "Isosceles", "Scalene", "Right"],
+                    correctAnswer: 1,
+                    subject: "Math"
+                },
+                {
+                    id: 4,
+                    question: "What is 15% of 200?",
+                    options: ["15", "20", "30", "25"],
+                    correctAnswer: 2,
+                    subject: "Math"
+                },
+                {
+                    id: 5,
+                    question: "Solve for x: 2x + 5 = 15",
+                    options: ["5", "10", "7.5", "8"],
+                    correctAnswer: 0,
+                    subject: "Math"
+                },
+                {
+                    id: 6,
+                    question: "What is the area of a circle with radius 7 cm? (Use π = 22/7)",
+                    options: ["154 cm²", "44 cm²", "88 cm²", "22 cm²"],
+                    correctAnswer: 0,
+                    subject: "Math"
+                },
+                {
+                    id: 7,
+                    question: "What is the next number in the sequence: 2, 6, 12, 20, 30, ...?",
+                    options: ["40", "42", "44", "46"],
+                    correctAnswer: 1,
+                    subject: "Math"
+                },
+                {
+                    id: 8,
+                    question: "If a = 3 and b = 4, what is the value of a² + b²?",
+                    options: ["7", "12", "25", "5"],
+                    correctAnswer: 2,
+                    subject: "Math"
+                },
+                
+                // Physics Questions
+                {
+                    id: 9,
+                    question: "What is the SI unit of force?",
+                    options: ["Joule", "Newton", "Watt", "Pascal"],
+                    correctAnswer: 1,
+                    subject: "Physics"
+                },
+                {
+                    id: 10,
+                    question: "Which law states that every action has an equal and opposite reaction?",
+                    options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Gravitation"],
+                    correctAnswer: 2,
+                    subject: "Physics"
+                },
+                {
+                    id: 11,
+                    question: "What is the speed of light in vacuum?",
+                    options: ["299,792,458 m/s", "300,000,000 m/s", "250,000,000 m/s", "350,000,000 m/s"],
+                    correctAnswer: 0,
+                    subject: "Physics"
+                },
+                {
+                    id: 12,
+                    question: "Which color of light has the longest wavelength?",
+                    options: ["Violet", "Blue", "Green", "Red"],
+                    correctAnswer: 3,
+                    subject: "Physics"
+                },
+                {
+                    id: 13,
+                    question: "What is the unit of electric current?",
+                    options: ["Volt", "Ampere", "Ohm", "Watt"],
+                    correctAnswer: 1,
+                    subject: "Physics"
+                },
+                {
+                    id: 14,
+                    question: "Which subatomic particle has a negative charge?",
+                    options: ["Proton", "Neutron", "Electron", "Positron"],
+                    correctAnswer: 2,
+                    subject: "Physics"
+                },
+                {
+                    id: 15,
+                    question: "What is the acceleration due to gravity on Earth?",
+                    options: ["9.8 m/s²", "10 m/s²", "8.9 m/s²", "11 m/s²"],
+                    correctAnswer: 0,
+                    subject: "Physics"
+                },
+                {
+                    id: 16,
+                    question: "Which type of lens is used to correct myopia (nearsightedness)?",
+                    options: ["Convex lens", "Concave lens", "Bifocal lens", "Cylindrical lens"],
+                    correctAnswer: 1,
+                    subject: "Physics"
+                },
+                
+                // Chemistry Questions
+                {
+                    id: 17,
+                    question: "What is the chemical symbol for gold?",
+                    options: ["Go", "Gd", "Au", "Ag"],
+                    correctAnswer: 2,
+                    subject: "Chemistry"
+                },
+                {
+                    id: 18,
+                    question: "What is the pH value of pure water?",
+                    options: ["5", "6", "7", "8"],
+                    correctAnswer: 2,
+                    subject: "Chemistry"
+                },
+                {
+                    id: 19,
+                    question: "Which gas is most abundant in Earth's atmosphere?",
+                    options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"],
+                    correctAnswer: 2,
+                    subject: "Chemistry"
+                },
+                {
+                    id: 20,
+                    question: "What is the atomic number of carbon?",
+                    options: ["6", "12", "14", "8"],
+                    correctAnswer: 0,
+                    subject: "Chemistry"
+                },
+                {
+                    id: 21,
+                    question: "Which element is known as the 'king of chemicals'?",
+                    options: ["Sulfuric Acid", "Hydrochloric Acid", "Nitric Acid", "Acetic Acid"],
+                    correctAnswer: 0,
+                    subject: "Chemistry"
+                },
+                {
+                    id: 22,
+                    question: "What is the main component of natural gas?",
+                    options: ["Ethane", "Propane", "Methane", "Butane"],
+                    correctAnswer: 2,
+                    subject: "Chemistry"
+                },
+                {
+                    id: 23,
+                    question: "Which metal is liquid at room temperature?",
+                    options: ["Sodium", "Mercury", "Gallium", "Both Mercury and Gallium"],
+                    correctAnswer: 3,
+                    subject: "Chemistry"
+                },
+                {
+                    id: 24,
+                    question: "What is the chemical formula for table salt?",
+                    options: ["NaCl", "KCl", "CaCl₂", "MgCl₂"],
+                    correctAnswer: 0,
+                    subject: "Chemistry"
+                },
+                
+                // Biology Questions
+                {
+                    id: 25,
+                    question: "What is the powerhouse of the cell?",
+                    options: ["Nucleus", "Mitochondria", "Ribosome", "Golgi Apparatus"],
+                    correctAnswer: 1,
+                    subject: "Biology"
+                },
+                {
+                    id: 26,
+                    question: "Which blood type is known as the universal donor?",
+                    options: ["A", "B", "AB", "O"],
+                    correctAnswer: 3,
+                    subject: "Biology"
+                },
+                {
+                    id: 27,
+                    question: "How many chromosomes do humans have?",
+                    options: ["23", "46", "48", "24"],
+                    correctAnswer: 1,
+                    subject: "Biology"
+                },
+                {
+                    id: 28,
+                    question: "Which organ produces insulin?",
+                    options: ["Liver", "Pancreas", "Kidney", "Stomach"],
+                    correctAnswer: 1,
+                    subject: "Biology"
+                },
+                {
+                    id: 29,
+                    question: "What is the largest organ in the human body?",
+                    options: ["Liver", "Brain", "Skin", "Heart"],
+                    correctAnswer: 2,
+                    subject: "Biology"
+                },
+                {
+                    id: 30,
+                    question: "Which part of the plant conducts photosynthesis?",
+                    options: ["Root", "Stem", "Leaf", "Flower"],
+                    correctAnswer: 2,
+                    subject: "Biology"
+                },
+                {
+                    id: 31,
+                    question: "What is the study of fossils called?",
+                    options: ["Paleontology", "Archaeology", "Geology", "Anthropology"],
+                    correctAnswer: 0,
+                    subject: "Biology"
+                },
+                {
+                    id: 32,
+                    question: "Which vitamin is produced when the skin is exposed to sunlight?",
+                    options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
+                    correctAnswer: 3,
+                    subject: "Biology"
+                },
+                
+                // Reasoning Questions
+                {
+                    id: 33,
+                    question: "If all roses are flowers and some flowers fade quickly, which statement must be true?",
+                    options: ["All roses fade quickly", "Some roses fade quickly", "No roses fade quickly", "Some flowers that fade quickly are roses"],
+                    correctAnswer: 3,
+                    subject: "Reasoning"
+                },
+                {
+                    id: 34,
+                    question: "Complete the sequence: 2, 4, 8, 16, ...",
+                    options: ["24", "32", "36", "64"],
+                    correctAnswer: 1,
+                    subject: "Reasoning"
+                },
+                {
+                    id: 35,
+                    question: "If TEACHER is coded as UFBDIBS, how is STUDENT coded?",
+                    options: ["TUVEFOU", "TUUEFOU", "TVUFEOU", "TUVFEOU"],
+                    correctAnswer: 3,
+                    subject: "Reasoning"
+                },
+                {
+                    id: 36,
+                    question: "A is the brother of B. B is the brother of C. C is the father of D. How is A related to D?",
+                    options: ["Uncle", "Father", "Brother", "Grandfather"],
+                    correctAnswer: 0,
+                    subject: "Reasoning"
+                },
+                {
+                    id: 37,
+                    question: "If Monday is the first day of the week, what is the fourth day?",
+                    options: ["Wednesday", "Thursday", "Friday", "Saturday"],
+                    correctAnswer: 1,
+                    subject: "Reasoning"
+                },
+                {
+                    id: 38,
+                    question: "Which number is the odd one out: 2, 4, 8, 16, 32, 64, 100",
+                    options: ["2", "8", "64", "100"],
+                    correctAnswer: 3,
+                    subject: "Reasoning"
+                },
+                {
+                    id: 39,
+                    question: "If all cats are mammals and some mammals are pets, which statement is correct?",
+                    options: ["All cats are pets", "Some cats are pets", "No cats are pets", "All pets are cats"],
+                    correctAnswer: 1,
+                    subject: "Reasoning"
+                },
+                {
+                    id: 40,
+                    question: "Complete the analogy: Book is to Reading as Fork is to _____",
+                    options: ["Eating", "Writing", "Cooking", "Cutting"],
+                    correctAnswer: 0,
+                    subject: "Reasoning"
+                },
+                
+                // History Questions
+                {
+                    id: 41,
+                    question: "In which year did World War II end?",
+                    options: ["1943", "1944", "1945", "1946"],
+                    correctAnswer: 2,
+                    subject: "History"
+                },
+                {
+                    id: 42,
+                    question: "Who was the first President of the United States?",
+                    options: ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"],
+                    correctAnswer: 1,
+                    subject: "History"
+                },
+                {
+                    id: 43,
+                    question: "Which civilization built the Machu Picchu?",
+                    options: ["Aztec", "Maya", "Inca", "Olmec"],
+                    correctAnswer: 2,
+                    subject: "History"
+                },
+                {
+                    id: 44,
+                    question: "When did India gain independence?",
+                    options: ["1945", "1946", "1947", "1948"],
+                    correctAnswer: 2,
+                    subject: "History"
+                },
+                {
+                    id: 45,
+                    question: "Who discovered penicillin?",
+                    options: ["Marie Curie", "Alexander Fleming", "Louis Pasteur", "Robert Koch"],
+                    correctAnswer: 1,
+                    subject: "History"
+                },
+                {
+                    id: 46,
+                    question: "Which empire was ruled by Julius Caesar?",
+                    options: ["Greek", "Roman", "Egyptian", "Persian"],
+                    correctAnswer: 1,
+                    subject: "History"
+                },
+                {
+                    id: 47,
+                    question: "What was the name of the ship that brought the Pilgrims to America in 1620?",
+                    options: ["Santa Maria", "Mayflower", "Nina", "Pinta"],
+                    correctAnswer: 1,
+                    subject: "History"
+                },
+                {
+                    id: 48,
+                    question: "Who was the first woman to win a Nobel Prize?",
+                    options: ["Rosalind Franklin", "Marie Curie", "Dorothy Hodgkin", "Barbara McClintock"],
+                    correctAnswer: 1,
+                    subject: "History"
+                },
+                {
+                    id: 49,
+                    question: "Which ancient wonder was located in Alexandria, Egypt?",
+                    options: ["Hanging Gardens", "Colossus of Rhodes", "Lighthouse of Alexandria", "Temple of Artemis"],
+                    correctAnswer: 2,
+                    subject: "History"
+                },
+                {
+                    id: 50,
+                    question: "Who painted the Mona Lisa?",
+                    options: ["Michelangelo", "Raphael", "Leonardo da Vinci", "Donatello"],
+                    correctAnswer: 2,
+                    subject: "History"
+                }
+            ];
         }
 
-        // Error Display Function
-        function showError(message) {
-            errorMessage.textContent = message;
-            openModal(errorModal);
-        }
-
-        // Game Functions
-        function startGame() {
-            currentQuestionIndex = 0;
-            userAnswers = new Array(questions[currentTopic].length).fill(null);
-            openModal(gameModal);
-            displayQuestion();
-        }
-
+        // Display current question
         function displayQuestion() {
-            const question = questions[currentTopic][currentQuestionIndex];
-            questionText.textContent = question.question;
+            const question = quizData[currentQuestionIndex];
+            document.getElementById('question-text').textContent = question.question;
             
+            const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
+            
             question.options.forEach((option, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.className = 'option';
                 optionElement.textContent = option;
-                optionElement.addEventListener('click', () => selectOption(index));
+                optionElement.dataset.index = index;
                 
-                if (userAnswers[currentQuestionIndex] === index) {
-                    optionElement.style.background = 'rgba(0, 114, 255, 0.5)';
+                if (userAnswers[currentQuestionIndex] !== null) {
+                    if (index === question.correctAnswer) {
+                        optionElement.classList.add('correct');
+                    } else if (index === userAnswers[currentQuestionIndex] && index !== question.correctAnswer) {
+                        optionElement.classList.add('incorrect');
+                    }
                 }
                 
+                optionElement.addEventListener('click', () => selectOption(index));
                 optionsContainer.appendChild(optionElement);
             });
             
-            questionCounter.textContent = `Question ${currentQuestionIndex + 1} of ${questions[currentTopic].length}`;
+            document.getElementById('question-counter').textContent = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
             
-            // Show/hide navigation buttons
-            prevQuestionBtn.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
-            nextQuestionBtn.style.display = currentQuestionIndex < questions[currentTopic].length - 1 ? 'block' : 'none';
-            submitQuizBtn.style.display = currentQuestionIndex === questions[currentTopic].length - 1 ? 'block' : 'none';
+            // Update navigation buttons
+            document.getElementById('prev-question').disabled = currentQuestionIndex === 0;
+            document.getElementById('next-question').disabled = currentQuestionIndex === quizData.length - 1;
         }
 
+        // Select an option
         function selectOption(optionIndex) {
+            if (userAnswers[currentQuestionIndex] !== null) return; // Already answered
+            
             userAnswers[currentQuestionIndex] = optionIndex;
-            displayQuestion(); // Refresh to show selection
+            
+            const question = quizData[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            
+            // Play sound and highlight options
+            if (optionIndex === question.correctAnswer) {
+                if (soundEnabled) correctSound.play();
+                options[optionIndex].classList.add('correct');
+            } else {
+                if (soundEnabled) incorrectSound.play();
+                options[optionIndex].classList.add('incorrect');
+                options[question.correctAnswer].classList.add('correct');
+            }
+            
+            // Auto-advance after a short delay
+            setTimeout(() => {
+                if (currentQuestionIndex < quizData.length - 1) {
+                    currentQuestionIndex++;
+                    displayQuestion();
+                } else {
+                    // Last question answered, show results
+                    showResults();
+                }
+            }, 1500);
         }
 
-        function showPreviousQuestion() {
+        // Start timer
+        function startTimer() {
+            clearInterval(timerInterval);
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                if (!quizPaused) {
+                    timeElapsed++;
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const hours = Math.floor(timeElapsed / 3600);
+            const minutes = Math.floor((timeElapsed % 3600) / 60);
+            const seconds = timeElapsed % 60;
+            document.getElementById('quiz-timer').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Pause/resume quiz
+        document.getElementById('pause-quiz').addEventListener('click', function() {
+            if (quizPaused) {
+                // Resume quiz
+                quizPaused = false;
+                this.textContent = 'Pause';
+                startTimer();
+                if (soundEnabled) timerSound.play();
+            } else {
+                // Pause quiz
+                quizPaused = true;
+                this.textContent = 'Resume';
+                clearInterval(timerInterval);
+                timerSound.pause();
+            }
+        });
+
+        // Navigation between questions
+        document.getElementById('prev-question').addEventListener('click', function() {
             if (currentQuestionIndex > 0) {
                 currentQuestionIndex--;
                 displayQuestion();
             }
-        }
+        });
 
-        function showNextQuestion() {
-            if (currentQuestionIndex < questions[currentTopic].length - 1) {
+        document.getElementById('next-question').addEventListener('click', function() {
+            if (currentQuestionIndex < quizData.length - 1) {
                 currentQuestionIndex++;
                 displayQuestion();
             }
+        });
+
+        // Show results
+        function showResults() {
+            clearInterval(timerInterval);
+            timerSound.pause();
+            document.getElementById('quiz-container').style.display = 'none';
+            
+            const correctAnswers = userAnswers.filter((answer, index) => 
+                answer === quizData[index].correctAnswer
+            ).length;
+            
+            document.getElementById('correct-answers').textContent = correctAnswers;
+            document.getElementById('total-questions').textContent = quizData.length;
+            document.getElementById('score-display').textContent = `${correctAnswers}/${quizData.length}`;
+            document.getElementById('results-modal').style.display = 'flex';
         }
 
-        function submitQuiz() {
-            // Calculate score
-            let score = 0;
-            questions[currentTopic].forEach((question, index) => {
-                if (userAnswers[index] === question.correct) {
-                    score++;
-                }
+        // Play again
+        document.getElementById('play-again').addEventListener('click', function() {
+            document.getElementById('results-modal').style.display = 'none';
+            initializeQuiz();
+        });
+
+        // Exit quiz
+        document.getElementById('exit-quiz').addEventListener('click', function() {
+            document.getElementById('results-modal').style.display = 'none';
+        });
+
+        // Close modals when clicking X
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
             });
-            
-            // Show score popup
-            showScore(score);
-        }
-        
-        function showScore(score) {
-            const totalQuestions = questions[currentTopic].length;
-            const percentage = (score / totalQuestions) * 100;
-            
-            // Set score values
-            finalScore.textContent = `${score}/${totalQuestions}`;
-            scoreDetails.textContent = `You answered ${score} questions correctly out of ${totalQuestions}`;
-            
-            // Set score message based on performance
-            if (percentage >= 90) {
-                scoreMessage.textContent = "Outstanding! You're a true expert!";
-            } else if (percentage >= 75) {
-                scoreMessage.textContent = "Excellent work! You know your stuff!";
-            } else if (percentage >= 60) {
-                scoreMessage.textContent = "Good job! You're on the right track!";
-            } else if (percentage >= 50) {
-                scoreMessage.textContent = "Not bad! Keep practicing to improve!";
-            } else {
-                scoreMessage.textContent = "Keep learning! You'll do better next time!";
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
             }
-            
-            // Close game modal and open score modal
-            closeModal(gameModal);
-            openModal(scoreModal);
-        }
-        
-        function playAgain() {
-            closeModal(scoreModal);
-            startGame();
-        }
+        });
+
+        // Get Started button
+        document.getElementById('get-started').addEventListener('click', function() {
+            document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
